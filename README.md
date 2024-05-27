@@ -2,7 +2,7 @@
 - [repo backend](https://github.com/Francescodc92/pizzeria-backend-laravel-11)
 
 ## TODO
-
+- cambiare i link dell'header in router-links
 
 ### Tecnologie:
 - HTML
