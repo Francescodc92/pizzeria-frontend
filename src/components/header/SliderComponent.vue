@@ -40,15 +40,15 @@
 
 <template>
   <div v-for="(slide, index) in sliderHeaderArray" :key="index">
-    <div class="flex items-center justify-center h-[400px] bg-center bg-no-repeat" :class="slide.bg" v-if="index == activeImg" >
+    <div class="flex items-center justify-center h-[250px] md:h-[320px] bg-center bg-contain bg-no-repeat" :class="slide.bg" v-if="index == activeImg" >
       <img class="object-cover max-h-full" :src="getImgPath(slide.src)" :alt="slide.name">
     </div>
   </div>
 
-  <button class="w-16 h-16 absolute rounded-full bg-white pt-1 text-primary font-bold top-1/2 -translate-y-1/2 -translate-x-1/2 rotate-90 flex items-start justify-center left-0 border border-primary" @click="changeCurrentImg('prev')">
+  <button class="w-16 h-16 absolute rounded-full bg-white transition-all duration-300 hover:bg-white/70 uppercase text-xs  pb-2 text-primary font-bold top-1/2 -translate-y-1/2 -translate-x-1/2 -rotate-90 flex items-end justify-center left-0 border border-primary" @click="changeCurrentImg('prev')">
     prev
   </button>
-  <button class="w-16 h-16 absolute rounded-full bg-white pt-1 text-primary font-bold top-1/2 -translate-y-1/2 translate-x-1/2 -rotate-90 flex items-start justify-center right-0 border border-primary" @click="changeCurrentImg('next')">
+  <button class="w-16 h-16 absolute rounded-full bg-white transition-all duration-300 hover:bg-white/70 uppercase text-xs pb-2 text-primary font-bold top-1/2 -translate-y-1/2 translate-x-1/2 rotate-90 flex items-end justify-center right-0 border border-primary" @click="changeCurrentImg('next')">
     next
   </button>
 </template>

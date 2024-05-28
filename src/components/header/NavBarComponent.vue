@@ -65,7 +65,7 @@
                     0
                   </div>
                 </div>
-              cart
+              
             </a>
           </li>
         </ul>

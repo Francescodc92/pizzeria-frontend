@@ -1,8 +1,9 @@
 <script setup>
+import MainComponent from '../components/main/MainComponent.vue'
 </script>
 
 <template>
-  <h1>Home page</h1>
+  <MainComponent/>
 </template>
 
 <style scoped>
