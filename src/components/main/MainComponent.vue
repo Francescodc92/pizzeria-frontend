@@ -1,11 +1,11 @@
 <script setup>
-  import BannerListComponent from './SecrionBanner/BannerListComponent.vue'
+import BannerListComponent from "./SectionBanner/BannerListComponent.vue";
+import TestimonialsListComponent from "./SectionTestimonials/TestimonialsListComponent.vue";
 </script>
 
 <template>
-  <BannerListComponent/>
+  <BannerListComponent />
+  <TestimonialsListComponent />
 </template>
 
-<style scoped>
-</style>
-
+<style scoped></style>
