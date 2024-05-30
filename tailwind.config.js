@@ -12,6 +12,7 @@ export default {
         taste: "url('/src/assets/img/h3-rev-img-3.png')",
         crust: "url('/src/assets/img/h3-rev-img-1.png')",
         testimonials: "url('/src/assets/img/h3-testimonials-bckgrnd.jpg')",
+        bigImg: "url('/src/assets/img/h3-background-img.jpg')",
       },
     },
   },

@@ -28,10 +28,10 @@ const combosArray = ref([
 <template>
   <section
     id="specials-combos"
-    class="min-h-[350px] max-h-[500px] md:min-h-[400px] flex flex-col lg:flex-row my-2 overflow-hidden"
+    class="lg:h-[500px] flex flex-col lg:flex-row my-2 overflow-hidden"
   >
     <div
-      class="relative lg:w-2/3 before:content-[url('/src/assets/img/h1-img-7n.png')] before:bg-black/20 before:w-full before:max-w-full before:h-full before:absolute before:flex before:items-center before:justify-center"
+      class="relative h-full lg:w-2/3 before:content-[url('/src/assets/img/h1-img-7n.png')] before:bg-black/20 before:w-full before:inset-0 before:absolute before:flex before:items-center before:justify-center"
     >
       <img
         class="h-full w-full object-cover object-top"

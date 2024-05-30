@@ -2,6 +2,7 @@
 import BannerListComponent from "./SectionBanner/BannerListComponent.vue";
 import SpecialsComboComponent from "./SectionPromotion/SpecialsComboComponent.vue";
 import TestimonialsListComponent from "./SectionTestimonials/TestimonialsListComponent.vue";
+import ImageComponent from "./SectionImg/ImgComponent.vue";
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import TestimonialsListComponent from "./SectionTestimonials/TestimonialsListCom
     <BannerListComponent />
     <TestimonialsListComponent />
     <SpecialsComboComponent />
+    <ImageComponent />
   </main>
 </template>
 
