@@ -26,6 +26,11 @@ const employeesArray = ref([
     name: "giacomo rossi",
     role: "cuoco",
   },
+  {
+    link: "img/h1-team-4a.jpg",
+    name: "giacomo rossi",
+    role: "cuoco",
+  },
 ]);
 </script>
 

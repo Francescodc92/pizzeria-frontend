@@ -35,7 +35,7 @@ const partnersArray = ref([
       :slidesPerView="'auto'"
       :space-between="5"
       :autoplay="{
-        delay: 2000,
+        delay: 2300,
         disableOnInteraction: false,
       }"
       :breakpoints="{

@@ -1,3 +1,7 @@
 import { reactive } from "vue";
 
-export const store = reactive({})
+export const store = reactive({
+  pizzas: [],
+  user: null,
+  loginOpen: false,
+});

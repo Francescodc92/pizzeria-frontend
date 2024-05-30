@@ -7,7 +7,7 @@
   >
     <div class="max-w-5xl mx-auto relative z-10">
       <p
-        class="text-white/80 text-3xl h-full sm:max-w-[200px] py-20 uppercase font-bold text-center"
+        class="text-white/80 text-4xl h-full sm:max-w-[200px] sm:text-left py-20 uppercase font-bold text-center"
       >
         go ahead and build your own pizza we won't judge
       </p>

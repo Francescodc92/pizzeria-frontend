@@ -5,6 +5,7 @@ import TestimonialsListComponent from "./SectionTestimonials/TestimonialsListCom
 import ImageComponent from "./SectionImg/ImgComponent.vue";
 import EmployeesListComponent from "./SectionEmployees/EmployeesListComponent.vue";
 import PartnersListComponent from "./SectionPartners/PartnersListComponent.vue";
+import PizzasListComponent from "./SectionMenu/PizzasListComponent.vue";
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import PartnersListComponent from "./SectionPartners/PartnersListComponent.vue";
     <ImageComponent />
     <EmployeesListComponent />
     <PartnersListComponent />
+    <PizzasListComponent />
   </main>
 </template>
 
