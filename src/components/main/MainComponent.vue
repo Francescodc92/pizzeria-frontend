@@ -3,7 +3,8 @@ import BannerListComponent from "./SectionBanner/BannerListComponent.vue";
 import SpecialsComboComponent from "./SectionPromotion/SpecialsComboComponent.vue";
 import TestimonialsListComponent from "./SectionTestimonials/TestimonialsListComponent.vue";
 import ImageComponent from "./SectionImg/ImgComponent.vue";
-import EmployeesComponent from "./SectionEmployees/EmployeesComponent.vue";
+import EmployeesListComponent from "./SectionEmployees/EmployeesListComponent.vue";
+import PartnersListComponent from "./SectionPartners/PartnersListComponent.vue";
 </script>
 
 <template>
@@ -12,7 +13,8 @@ import EmployeesComponent from "./SectionEmployees/EmployeesComponent.vue";
     <TestimonialsListComponent />
     <SpecialsComboComponent />
     <ImageComponent />
-    <EmployeesComponent />
+    <EmployeesListComponent />
+    <PartnersListComponent />
   </main>
 </template>
 

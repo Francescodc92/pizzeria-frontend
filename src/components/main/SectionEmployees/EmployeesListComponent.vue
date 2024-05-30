@@ -36,10 +36,10 @@ const employeesArray = ref([
       :space-between="5"
       :autoplay="{
         delay: 2000,
-        disableOnInteraction: true,
+        disableOnInteraction: false,
       }"
       :breakpoints="{
-        '640': {
+        '400': {
           slidesPerView: 2,
           spaceBetween: 10,
         },

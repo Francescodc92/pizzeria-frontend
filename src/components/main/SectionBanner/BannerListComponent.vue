@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import { getImgPath } from "../../../utilities/getPath.js";
 import CardComponent from "./CardComponent.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -21,7 +20,7 @@ const cardsArray = [
       :space-between="5"
       :autoplay="{
         delay: 2000,
-        disableOnInteraction: true,
+        disableOnInteraction: false,
       }"
       :breakpoints="{
         '640': {
