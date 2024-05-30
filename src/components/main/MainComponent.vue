@@ -4,8 +4,10 @@ import TestimonialsListComponent from "./SectionTestimonials/TestimonialsListCom
 </script>
 
 <template>
-  <BannerListComponent />
-  <TestimonialsListComponent />
+  <main class="bg-[#f6f7f2]">
+    <BannerListComponent />
+    <TestimonialsListComponent />
+  </main>
 </template>
 
 <style scoped></style>

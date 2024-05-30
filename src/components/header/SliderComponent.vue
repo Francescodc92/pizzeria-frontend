@@ -29,12 +29,16 @@ const changeCurrentImg = (button) => {
     sliderHeaderArray.value
   );
 };
+
+const changeCurrentImgIndex = (index) => {
+  activeImg.value = index;
+};
 </script>
 
 <template>
-  <div v-for="(slide, index) in sliderHeaderArray" :key="index" class="pb-3">
+  <div v-for="(slide, index) in sliderHeaderArray" :key="index">
     <div
-      class="flex items-center justify-center h-[250px] md:h-[320px] bg-center bg-contain bg-no-repeat"
+      class="flex items-center justify-center h-[250px] md:h-[320px] bg-center bg-contain bg-no-repeat mb-12"
       :class="slide.bg"
       v-if="index == activeImg"
     >
@@ -44,6 +48,15 @@ const changeCurrentImg = (button) => {
         :alt="slide.name"
       />
     </div>
+  </div>
+  <div class="flex absolute bottom-5 left-1/2 -translate-x-1/2">
+    <div
+      class="w-5 h-5 rounded-full mx-1 cursor-pointer"
+      v-for="(slide, index) in sliderHeaderArray"
+      :key="index"
+      :class="index == activeImg ? 'bg-primary' : 'bg-slate-700'"
+      @click="changeCurrentImgIndex(index)"
+    ></div>
   </div>
 
   <SliderButtons @changeCurrent="changeCurrentImg" />

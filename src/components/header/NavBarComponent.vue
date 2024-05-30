@@ -7,7 +7,7 @@ let showMenu = ref(false);
 <template>
   <nav class="fixed w-full z-20 top-0 start-0 bg-zinc-800">
     <div
-      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-3 py-2"
+      class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-3 py-2"
     >
       <a
         href="#menu"

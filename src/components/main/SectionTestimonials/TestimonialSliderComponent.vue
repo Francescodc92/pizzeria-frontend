@@ -9,7 +9,7 @@ const { testimonialObj } = defineProps({
 
 <template>
   <div
-    class="max-w-xl mx-auto font-bold text-sm text-zinc-500 text-center px-3 border"
+    class="max-w-xl mx-auto font-bold text-sm text-zinc-500 text-center px-3"
   >
     <p
       class="testimonial max-w-md text-center mx-auto text-xs md:text-md relative"

@@ -18,6 +18,10 @@ const testimonialsArray = ref([
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam delectus doloribus, vero id natus numquam aperiam, inventore amet odit unde optio! Magnam iste incidunt autem omnis animi debitis harum aut!",
     person: "lorem 2022",
   },
+  {
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam delectus doloribus, vero id natus numquam aperiam, inventore amet odit unde optio! Magnam iste incidunt autem omnis animi debitis harum aut!",
+    person: "lorem 2023",
+  },
 ]);
 
 const changeCurrentTestimonial = (button) => {
@@ -32,7 +36,7 @@ const changeCurrentTestimonial = (button) => {
 <template>
   <section
     id="testimonials"
-    class="bg-[#d9dad7] bg-testimonials relative min-h-[400px] flex items-center justify-center bg-center bg-cover bg-no-repeat overflow-x-hidden"
+    class="bg-testimonials relative min-h-[400px] flex items-center justify-center bg-center bg-cover bg-no-repeat overflow-x-hidden"
   >
     <template v-for="(testimonial, index) in testimonialsArray">
       <TestimonialSliderComponent
@@ -42,6 +46,13 @@ const changeCurrentTestimonial = (button) => {
       />
     </template>
     <SliderButtons @changeCurrent="changeCurrentTestimonial" />
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+      <p class="text-zinc-500">
+        <span class="text-primary">{{ activeTestimonial + 1 }}</span>
+        /
+        <span>{{ testimonialsArray.length }}</span>
+      </p>
+    </div>
   </section>
 </template>
 
