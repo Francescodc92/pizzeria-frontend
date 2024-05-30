@@ -3,15 +3,15 @@ import { ref } from "vue";
 import { getImgPath } from "../../../utilities/getPath.js";
 import CardComponent from "./CardComponent.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-const cardsArray = ref([
+const cardsArray = [
   "img/h3-img-1.jpg",
   "img/h3-img-2.jpg",
   "img/h3-img-3.jpg",
   "img/h3-img-4.jpg",
-]);
+];
 </script>
 
 <template>

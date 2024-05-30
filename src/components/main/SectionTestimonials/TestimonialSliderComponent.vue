@@ -20,11 +20,11 @@ const { testimonialObj } = defineProps({
       </span>
       <font-awesome-icon
         icon="fa-solid fa-quote-left"
-        class="absolute -top-[50px] left-0 md:-left-10 text-3xl text-[#b7903c]"
+        class="absolute -top-[30px] left-0 md:-left-10 text-3xl text-[#b7903c]"
       />
       <font-awesome-icon
         icon="fa-solid fa-quote-right"
-        class="absolute -bottom-[50px] right-0 md:-right-10 text-3xl text-[#b7903c]"
+        class="absolute -bottom-[30px] right-0 md:-right-10 text-3xl text-[#b7903c]"
       />
     </p>
   </div>

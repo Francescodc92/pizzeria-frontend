@@ -36,7 +36,7 @@ const changeCurrentTestimonial = (button) => {
 <template>
   <section
     id="testimonials"
-    class="bg-testimonials relative min-h-[400px] flex items-center justify-center bg-center bg-cover bg-no-repeat overflow-x-hidden"
+    class="bg-testimonials relative min-h-[350px] md:min-h-[400px] pt-12 flex md:items-center justify-center bg-center bg-cover bg-no-repeat overflow-x-hidden"
   >
     <template v-for="(testimonial, index) in testimonialsArray">
       <TestimonialSliderComponent
