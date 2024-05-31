@@ -30,7 +30,7 @@ const partnersArray = ref([
 </script>
 
 <template>
-  <section id="partners" class="flex my-2">
+  <section id="partners" class="flex my-2 bg-[#ebebde]">
     <swiper
       :slidesPerView="'auto'"
       :space-between="5"

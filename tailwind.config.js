@@ -13,6 +13,7 @@ export default {
         crust: "url('/src/assets/img/h3-rev-img-1.png')",
         testimonials: "url('/src/assets/img/h3-testimonials-bckgrnd.jpg')",
         bigImg: "url('/src/assets/img/h3-background-img.jpg')",
+        events: "url('/src/assets/img/h3-img-5a.jpg')",
       },
     },
   },
