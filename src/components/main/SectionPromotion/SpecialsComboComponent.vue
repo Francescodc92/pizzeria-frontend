@@ -27,7 +27,7 @@ const combosArray = ref([
 
 <template>
   <section
-    id="specials-combos"
+    id="specialsCombos"
     class="lg:h-[500px] flex flex-col lg:flex-row my-2 overflow-hidden"
   >
     <div

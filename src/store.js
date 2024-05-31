@@ -4,4 +4,5 @@ export const store = reactive({
   pizzas: [],
   user: null,
   loginOpen: false,
+  modalReservationOpen: false,
 });

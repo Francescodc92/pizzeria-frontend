@@ -10,7 +10,11 @@
 
 - effettuare una chiamata axios per prendere le pizze dal componente homepage
 - salvare le pizze nello store per poi poterle recuperare sia dal componente che lista le pizze sia dalla pagina che mostra tutte le pizze ed eventualmente anche da una pagina show della singola pizza (ragionare bene sul effettuare una seconda chiamata al backend per recuperare la singola pizza o se farlo tramite un filtraggio di quelle nello store)
--
+
+Reservations
+
+- valutare la possibilità di aggiungere una tabella reservations nel back per dare la possibilità di prenotare un tavolo
+- sistemare il modale della prenotazione del tavolo per mostrare meglio i dati e per terminare la prenotazione una volta creata la funzionalità nel back
 
 ### Tecnologie:
 

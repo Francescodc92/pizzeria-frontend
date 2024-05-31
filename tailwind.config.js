@@ -14,6 +14,7 @@ export default {
         testimonials: "url('/src/assets/img/h3-testimonials-bckgrnd.jpg')",
         bigImg: "url('/src/assets/img/h3-background-img.jpg')",
         events: "url('/src/assets/img/h3-img-5a.jpg')",
+        reservations: "url('/src/assets/img/h3-background-img-3.jpg')",
       },
     },
   },
