@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { getImgPath } from "../../utilities/getPath.js";
 let showMenu = ref(false);
+const emit = defineEmits(["openLoginModal"]);
 </script>
 
 <template>
@@ -26,6 +27,7 @@ let showMenu = ref(false);
         <button
           type="button"
           class="bg-primary text-white px-3 py-1 rounded text-sm uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
+          @click="$emit('openLoginModal')"
         >
           Login
         </button>

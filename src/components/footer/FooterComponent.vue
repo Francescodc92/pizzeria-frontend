@@ -81,7 +81,7 @@ const restaurantsArray = ref([
               <li>
                 <a
                   href=""
-                  class="p-1 text-xl hover:text-primary transition-all duration-300"
+                  class="p-3 text-xl hover:text-primary transition-all duration-300"
                 >
                   <font-awesome-icon icon="fa-brands fa-twitter" />
                 </a>
@@ -89,7 +89,7 @@ const restaurantsArray = ref([
               <li>
                 <a
                   href=""
-                  class="p-1 text-xl hover:text-primary transition-all duration-300"
+                  class="p-3 text-xl hover:text-primary transition-all duration-300"
                 >
                   <font-awesome-icon icon="fa-brands fa-facebook-f" />
                 </a>
@@ -97,7 +97,7 @@ const restaurantsArray = ref([
               <li>
                 <a
                   href=""
-                  class="p-1 text-xl hover:text-primary transition-all duration-300"
+                  class="p-3 text-xl hover:text-primary transition-all duration-300"
                 >
                   <font-awesome-icon icon="fa-brands fa-instagram" />
                 </a>
@@ -105,7 +105,7 @@ const restaurantsArray = ref([
               <li>
                 <a
                   href=""
-                  class="p-1 text-xl hover:text-primary transition-all duration-300"
+                  class="p-3 text-xl hover:text-primary transition-all duration-300"
                 >
                   <font-awesome-icon icon="fa-brands fa-linkedin-in" />
                 </a>

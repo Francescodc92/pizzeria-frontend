@@ -5,7 +5,7 @@ import { apiRequest } from "../utilities/axiosInstance.js";
 import { store } from "../store.js";
 
 const getPizzas = () => {
-  apiRequest.get("pizzas").then((response) => {
+  apiRequest.get("/pizzas").then((response) => {
     store.pizzas = response.data.data;
   });
 };
