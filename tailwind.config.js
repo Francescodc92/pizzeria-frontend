@@ -15,6 +15,8 @@ export default {
         bigImg: "url('/src/assets/img/h3-background-img.jpg')",
         events: "url('/src/assets/img/h3-img-5a.jpg')",
         reservations: "url('/src/assets/img/h3-background-img-3.jpg')",
+        footerImg: "url('/src/assets/img/footer-img-1.jpg')",
+        footerLogo: "url('/src/assets/img/footer-bottom-img.png')",
       },
     },
   },

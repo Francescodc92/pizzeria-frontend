@@ -36,7 +36,7 @@ const eventsArray = ref([
 </script>
 
 <template>
-  <section id="events" class="md:flex mt-10 mb-5 lg:h-[500px]">
+  <section id="events" class="md:flex mt-10 mb-2 lg:h-[500px]">
     <div
       class="w-full min-h-[500px] md:w-1/2 bg-events bg-bottom/center bg-cover bg-no-repeat md:order-2"
     ></div>
