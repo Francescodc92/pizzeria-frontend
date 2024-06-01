@@ -1,10 +1,24 @@
 <script setup>
 import { ref } from "vue";
 import { store } from "../../store.js";
+import { setDataInLocalStorage } from "../../utilities/localStorageHelper.js";
+import { apiRequest } from "../../utilities/axiosInstance.js";
+import { toast } from "../../utilities/toastInstance.js";
 import { getImgPath } from "../../utilities/getPath.js";
 let showMenu = ref(false);
 let logoutModalOpen = ref(false);
 const emit = defineEmits(["openLoginModal"]);
+
+const logout = () => {
+  apiRequest.post("/api/logout").then((response) => {
+    store.user = null;
+    logoutModalOpen.value = false;
+    setDataInLocalStorage("user", null);
+    toast.success(response.data.message, {
+      position: "top-right",
+    });
+  });
+};
 </script>
 
 <template>
@@ -42,7 +56,7 @@ const emit = defineEmits(["openLoginModal"]);
               {{ store.user.firstName }}
             </span>
             <div
-              class="w-[180px] bg-white/60 px-5 py-3 rounded-lg z-50 absolute top-10 lg:-left-2 -left-[100px] transition-all duration-300"
+              class="w-[180px] bg-black/60 px-5 py-3 rounded-lg z-50 absolute top-10 lg:-left-2 -left-[100px] transition-all duration-300"
               v-if="logoutModalOpen"
             >
               <ul class="flex flex-col gap-3">

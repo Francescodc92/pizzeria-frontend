@@ -1,6 +1,8 @@
 <script setup>
 import { store } from "../../store.js";
+import { setDataInLocalStorage } from "../../utilities/localStorageHelper.js";
 import { apiRequest } from "../../utilities/axiosInstance.js";
+import { toast } from "../../utilities/toastInstance.js";
 import { reactive } from "vue";
 const emit = defineEmits(["closeLoginModal", "openRegisterModal"]);
 const formData = reactive({
@@ -8,21 +10,17 @@ const formData = reactive({
   password: "",
 });
 
-const setDataInLocalStorage = (dataIdentifier, data) => {
-  localStorage.setItem(dataIdentifier, JSON.stringify(data));
-};
-
 const login = () => {
   apiRequest.get("/sanctum/csrf-cookie").then((res) => {
     apiRequest.post("/api/login", formData).then((response) => {
       setDataInLocalStorage("user", response.data.data);
       store.user = response.data.data;
       emit("closeLoginModal");
-      //settare un messaggio con un toast per esempio
+      toast.success("Login effettuato con successo", {
+        position: "top-right",
+      });
     });
   });
-
-  // da ragionare , se una volta effettuato il login fare il salvataggio da questo componente o creare un file dove inviare i dati per poi salvarli da li in modo da poter richiamare la funzione anche da altre parti del codice
 };
 </script>
 
