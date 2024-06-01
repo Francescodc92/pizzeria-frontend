@@ -1,6 +1,8 @@
 <script setup>
 import { store } from "../../store.js";
 import { reactive } from "vue";
+import { apiRequest } from "../../utilities/axiosInstance.js";
+import { toast } from "../../utilities/toastInstance.js";
 const emit = defineEmits(["closeRegisterModal", "openLoginModal"]);
 const formData = reactive({
   firstName: "",
@@ -12,8 +14,21 @@ const formData = reactive({
 });
 
 const register = () => {
-  emit("closeRegisterModal");
-  console.log(formData);
+  apiRequest
+    .post("/api/register", {
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      phone_number: formData.phoneNumber,
+      email: formData.email,
+      password: formData.password,
+      password_confirmation: formData.password_confirmation,
+    })
+    .then((response) => {
+      toast.success(response.data.message, {
+        position: "top-right",
+      });
+      emit("openLoginModal");
+    });
 };
 </script>
 
