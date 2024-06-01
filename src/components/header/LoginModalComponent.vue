@@ -1,7 +1,6 @@
 <script setup>
 import { store } from "../../store.js";
-import { setDataInLocalStorage } from "../../utilities/localStorage/localStorageHelper.js";
-import { apiRequest } from "../../utilities/axios/axiosInstance.js";
+import { login } from "../../utilities/auth/authFunctions.js";
 import { toast } from "../../utilities/toast/toastInstance.js";
 import { reactive } from "vue";
 const emit = defineEmits(["closeLoginModal", "openRegisterModal"]);
@@ -10,17 +9,22 @@ const formData = reactive({
   password: "",
 });
 
-const login = () => {
-  apiRequest.get("/sanctum/csrf-cookie").then((res) => {
-    apiRequest.post("/api/login", formData).then((response) => {
-      setDataInLocalStorage("user", response.data.data);
-      store.user = response.data.data;
-      emit("closeLoginModal");
-      toast.success("Login effettuato con successo", {
-        position: "top-right",
-      });
+const submitForm = async () => {
+  if (formData.email == "" || formData.password == "") {
+    toast.error("compila tutti i campi", {
+      position: "top-right",
     });
-  });
+    return;
+  }
+
+  const message = await login(formData);
+
+  if (message) {
+    emit("closeLoginModal");
+    toast.success(message, {
+      position: "top-right",
+    });
+  }
 };
 </script>
 
@@ -37,7 +41,7 @@ const login = () => {
     </button>
     <form
       class="w-full max-w-[600px] bg-white py-10 px-4 md:px-10 rounded shadow-lg"
-      @submit.prevent="login()"
+      @submit.prevent="submitForm()"
     >
       <div class="flex flex-col mb-4">
         <label class="text-sm text-gray-500 mb-2" for="email"> Email </label>

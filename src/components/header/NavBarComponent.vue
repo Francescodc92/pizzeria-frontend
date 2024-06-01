@@ -5,18 +5,16 @@ import { setDataInLocalStorage } from "../../utilities/localStorage/localStorage
 import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { toast } from "../../utilities/toast/toastInstance.js";
 import { getImgPath } from "../../utilities/imagePath/getPath.js";
+import { logout } from "../../utilities/auth/authFunctions.js";
 let showMenu = ref(false);
 let logoutModalOpen = ref(false);
 const emit = defineEmits(["openLoginModal"]);
 
-const logout = () => {
-  apiRequest.post("/api/logout").then((response) => {
-    store.user = null;
-    logoutModalOpen.value = false;
-    setDataInLocalStorage("user", null);
-    toast.success(response.data.message, {
-      position: "top-right",
-    });
+const logoutClick = async () => {
+  const message = await logout();
+  logoutModalOpen.value = false;
+  toast.success(message, {
+    position: "top-right",
   });
 };
 </script>
@@ -62,16 +60,17 @@ const logout = () => {
               <ul class="flex flex-col gap-3">
                 <li>
                   <button
-                    class="bg-primary text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
-                    @click="logout()"
+                    class="w-full bg-primary text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
+                    @click="logoutClick()"
                   >
                     Logout
                   </button>
                 </li>
-                <li>
+                <li v-if="store.user.role.includes('admin')" class="w-full">
                   <a
-                    class="bg-primary text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
+                    class="bg-primary w-full block text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
                     href="http://localhost"
+                    target="_blank"
                     >Area Admin</a
                   >
                 </li>

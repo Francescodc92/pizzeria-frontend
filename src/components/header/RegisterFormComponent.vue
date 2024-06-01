@@ -2,7 +2,6 @@
 import { store } from "../../store.js";
 import { reactive } from "vue";
 import { register } from "../../utilities/auth/authFunctions.js";
-import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { toast } from "../../utilities/toast/toastInstance.js";
 const emit = defineEmits(["closeRegisterModal", "openLoginModal"]);
 const formData = reactive({
@@ -14,7 +13,7 @@ const formData = reactive({
   password_confirmation: "",
 });
 
-const submitForm = () => {
+const submitForm = async () => {
   if (
     formData.firstName == "" ||
     formData.lastName == "" ||
@@ -39,7 +38,7 @@ const submitForm = () => {
     return;
   }
 
-  register({
+  const message = await register({
     first_name: formData.firstName,
     last_name: formData.lastName,
     phone_number: formData.phoneNumber,
@@ -47,6 +46,13 @@ const submitForm = () => {
     password: formData.password,
     password_confirmation: formData.password_confirmation,
   });
+
+  if (message) {
+    emit("openLoginModal");
+    toast.success(message, {
+      position: "top-right",
+    });
+  }
 };
 </script>
 

@@ -1,14 +1,46 @@
 import { apiRequest } from "../axios/axiosInstance";
-import { toast } from "../toast/toastInstance";
 import { store } from "../../store";
+import { setDataInLocalStorage } from "../localStorage/localStorageHelper";
 
-export const register = (formData) => {
-  apiRequest.post("/api/register", formData).then((response) => {
-    toast.success(response.data.message, {
-      position: "top-right",
-    });
-
-    store.loginModalOpen = true;
-    store.registerModalOpen = false;
+export const register = async (formData) => {
+  let message = "";
+  await apiRequest.post("/api/register", formData).then((response) => {
+    message = response.data.message;
   });
+
+  return message;
+};
+
+const getSanctumToken = async () => {
+  await apiRequest.get("/sanctum/csrf-cookie");
+};
+
+export const login = async (formData) => {
+  let message = "";
+  let token = false;
+  await getSanctumToken().then(() => {
+    token = true;
+  });
+
+  if (token) {
+    await apiRequest.post("/api/login", formData).then((response) => {
+      store.user = response.data.data;
+      setDataInLocalStorage("user", response.data.data);
+
+      message = response.data.message;
+    });
+  }
+
+  return message;
+};
+
+export const logout = async () => {
+  let message = "";
+  await apiRequest.post("/api/logout").then((response) => {
+    store.user = null;
+    setDataInLocalStorage("user", null);
+    message = response.data.message;
+  });
+
+  return message;
 };
