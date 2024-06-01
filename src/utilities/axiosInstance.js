@@ -1,7 +1,25 @@
 import axios from "axios";
+import { useToast } from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
+const $toast = useToast();
 
-export const apiRequest = axios.create({
+const apiRequest = axios.create({
   baseURL: "http://localhost",
   withCredentials: true,
   withXSRFToken: true,
 });
+
+apiRequest.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      $toast.error(error.response.data.error, {
+        position: "top-right",
+      });
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export { apiRequest };

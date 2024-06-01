@@ -2,13 +2,15 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 import { router } from "./router";
-/* import the fontawesome core */
+/* toast*/
+import ToastPlugin from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-bootstrap.css";
+/* toast*/
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-/* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-/* import specific icons */
 import {
   faLocationDot,
   faMagnifyingGlass,
@@ -29,7 +31,6 @@ import {
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 
-/* add icons to the library  fa-magnifying-glass*/
 library.add(
   faMagnifyingGlass,
   faEye,
@@ -48,5 +49,6 @@ library.add(
 
 createApp(App)
   .use(router)
+  .use(ToastPlugin)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
