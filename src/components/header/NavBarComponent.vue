@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from "vue";
+import { store } from "../../store.js";
 import { getImgPath } from "../../utilities/getPath.js";
 let showMenu = ref(false);
+let logoutModalOpen = ref(false);
 const emit = defineEmits(["openLoginModal"]);
 </script>
 
@@ -28,9 +30,41 @@ const emit = defineEmits(["openLoginModal"]);
           type="button"
           class="bg-primary text-white px-3 py-1 rounded text-sm uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
           @click="$emit('openLoginModal')"
+          v-if="!store.user"
         >
           Login
         </button>
+        <ul v-else>
+          <li
+            class="text-primary uppercase hover:text-primary/70 p-2 underline cursor-pointer relative"
+          >
+            <span @click="logoutModalOpen = !logoutModalOpen">
+              {{ store.user.firstName }}
+            </span>
+            <div
+              class="w-[180px] bg-white/60 px-5 py-3 rounded-lg z-50 absolute top-10 lg:-left-2 -left-[100px] transition-all duration-300"
+              v-if="logoutModalOpen"
+            >
+              <ul class="flex flex-col gap-3">
+                <li>
+                  <button
+                    class="bg-primary text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
+                    @click="logout()"
+                  >
+                    Logout
+                  </button>
+                </li>
+                <li>
+                  <a
+                    class="bg-primary text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
+                    href="http://localhost"
+                    >Area Admin</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
         <button
           @click="showMenu = !showMenu"
           type="button"
