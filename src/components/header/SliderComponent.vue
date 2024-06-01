@@ -1,6 +1,6 @@
 <script setup>
-import { getImgPath } from "../../utilities/getPath.js";
-import { sliderFunction } from "../../utilities/sliderFunction.js";
+import { getImgPath } from "../../utilities/imagePath/getPath.js";
+import { sliderFunction } from "../../utilities/slider/sliderFunction.js";
 import SliderButtons from "../SliderButtons.vue";
 import { ref } from "vue";
 let activeImg = ref(0);

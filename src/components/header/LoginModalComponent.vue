@@ -1,8 +1,8 @@
 <script setup>
 import { store } from "../../store.js";
-import { setDataInLocalStorage } from "../../utilities/localStorageHelper.js";
-import { apiRequest } from "../../utilities/axiosInstance.js";
-import { toast } from "../../utilities/toastInstance.js";
+import { setDataInLocalStorage } from "../../utilities/localStorage/localStorageHelper.js";
+import { apiRequest } from "../../utilities/axios/axiosInstance.js";
+import { toast } from "../../utilities/toast/toastInstance.js";
 import { reactive } from "vue";
 const emit = defineEmits(["closeLoginModal", "openRegisterModal"]);
 const formData = reactive({

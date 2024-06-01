@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import TestimonialSliderComponent from "./TestimonialSliderComponent.vue";
 import SliderButtons from "../../SliderButtons.vue";
-import { sliderFunction } from "../../../utilities/sliderFunction";
+import { sliderFunction } from "../../../utilities/slider/sliderFunction";
 
 const activeTestimonial = ref(0);
 const testimonialsArray = ref([

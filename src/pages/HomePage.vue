@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 import MainComponent from "../components/main/MainComponent.vue";
-import { apiRequest } from "../utilities/axiosInstance.js";
+import { apiRequest } from "../utilities/axios/axiosInstance.js";
 import { store } from "../store.js";
 
 const getPizzas = () => {

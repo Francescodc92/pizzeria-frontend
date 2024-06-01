@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-import { apiRequest } from "./utilities/axiosInstance.js";
+import { apiRequest } from "./utilities/axios/axiosInstance.js";
 import { store } from "./store.js";
 import HomePage from "./pages/HomePage.vue";
 import NotFound from "./pages/NotFound.vue";

@@ -1,5 +1,5 @@
 <script setup>
-import { getImgPath } from "../../../utilities/getPath.js";
+import { getImgPath } from "../../../utilities/imagePath/getPath.js";
 const { employeeData } = defineProps({
   employeeData: {
     type: Object,

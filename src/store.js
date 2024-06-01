@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { getDataFromLocalStorage } from "./utilities/localStorageHelper.js";
+import { getDataFromLocalStorage } from "./utilities/localStorage/localStorageHelper.js";
 
 export const store = reactive({
   pizzas: [],

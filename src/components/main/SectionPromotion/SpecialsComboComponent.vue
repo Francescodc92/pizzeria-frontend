@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getImgPath } from "../../../utilities/getPath.js";
+import { getImgPath } from "../../../utilities/imagePath/getPath.js";
 import ComboComponent from "../SectionPromotion/ComboComponent.vue";
 
 const combosArray = ref([

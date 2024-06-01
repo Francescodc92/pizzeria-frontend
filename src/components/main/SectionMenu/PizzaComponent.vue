@@ -1,5 +1,5 @@
 <script setup>
-import { formatCurrency } from "../../../utilities/formatCurrency";
+import { formatCurrency } from "../../../utilities/formatValue/formatCurrency";
 const { pizzaObj } = defineProps({
   pizzaObj: {
     type: Object,

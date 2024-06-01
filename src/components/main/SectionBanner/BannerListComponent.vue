@@ -1,5 +1,5 @@
 <script setup>
-import { getImgPath } from "../../../utilities/getPath.js";
+import { getImgPath } from "../../../utilities/imagePath/getPath.js";
 import CardComponent from "./CardComponent.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
