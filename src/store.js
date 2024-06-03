@@ -7,4 +7,5 @@ export const store = reactive({
   loginModalOpen: false,
   registerModalOpen: false,
   modalReservationOpen: false,
+  cart:[],
 });
