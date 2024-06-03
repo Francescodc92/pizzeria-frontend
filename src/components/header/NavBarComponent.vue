@@ -1,11 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { store } from "../../store.js";
-import { setDataInLocalStorage } from "../../utilities/localStorage/localStorageHelper.js";
-import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { toast } from "../../utilities/toast/toastInstance.js";
 import { getImgPath } from "../../utilities/imagePath/getPath.js";
 import { logout } from "../../utilities/auth/authFunctions.js";
+import { RouterLink } from "vue-router";
 let showMenu = ref(false);
 let logoutModalOpen = ref(false);
 const emit = defineEmits(["openLoginModal"]);
@@ -22,10 +21,10 @@ const logoutClick = async () => {
 <template>
   <nav class="fixed w-full z-20 top-0 start-0 bg-zinc-800">
     <div class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-3 py-2">
-      <a href="#menu"
+      <router-link :to="{ name: 'pizzas' }"
         class="bg-primary text-white px-3 py-1 rounded text-sm uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70">
         Ordina
-      </a>
+      </router-link>
       <div class="max-w-[80px] sm:max-w-[100px] hidden sm:block md:hidden">
         <img class="w-full" :src="getImgPath('img/h5-logo-divided-header-dark.png')" alt="logo pizzeria don peppe" />
       </div>
@@ -33,7 +32,7 @@ const logoutClick = async () => {
         <button type="button"
           class="bg-primary text-white px-3 py-1 rounded text-sm uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
           @click="$emit('openLoginModal')" v-if="!store.user">
-          Login
+          Accedi
         </button>
         <ul v-else>
           <li class="text-primary uppercase hover:text-primary/70 p-2 underline cursor-pointer relative">
@@ -75,7 +74,8 @@ const logoutClick = async () => {
           class="flex flex-col gap-3 md:gap-0 p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 rtl:space-x-reverse md:flex-row md:items-center md:mt-0 md:border-0 md:bg-white dark:bg-gray-800/80 md:dark:bg-transparent dark:border-gray-700">
           <li>
             <router-link :to="{ name: 'home' }"
-              class="flex items-center justify-center gap-1 py-2 px-3 text-white rounded fill-white md:bg-transparent uppercase hover:text-primary hover:fill-primary text-sm">
+              class="flex items-center justify-center gap-1 py-2 px-3  rounded fill-white md:bg-transparent uppercase hover:text-primary hover:fill-primary text-sm"
+              :class="$route.name === 'home' ? 'fill-primary text-primary' : 'fill-white text-white'">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 11" class="qodef-moustache w-5 h-5">
                 <path
                   d="M21.1 3.7c-.6-.1-1.1-.3-1.6-.7-.4-.3-.8-.7-1.1-1-.9-.9-1.8-1.8-3.1-1.8-.2 0-.4 0-.6.1-.8.1-1.6.6-2.2 1.3C11.9.9 11.2.4 10.3.3c-.2 0-.4-.1-.6-.1-1.3 0-2.2.9-3 1.8-.4.3-.8.7-1.2 1-.6.5-1.3.7-2.1.7-1 0-1.9-.4-2.6-1l-.6-.6v.8c0 6.8 4.4 7.8 7.1 7.8 1.5 0 2.8-.3 3.2-.5.8-.4 1.4-.9 2-1.5.5.7 1.2 1.2 2 1.5.4.2 1.7.5 3.2.5 1 0 2.3-.1 3.5-.7.2-.1.5-.3.7-.4 1.7-1 3-3 3-6.8v-.7l-.6.5c-.6.6-1.5 1-2.4 1l-.8.1zm0 5.6c-1.1.6-2.3.8-3.5.8-1.5 0-2.7-.3-3-.5-.8-.4-1.5-1-2-1.7l-.3-.4-.3.4c-.5.7-1.1 1.3-2 1.7 0 .1-1.2.4-2.7.4C4.5 10 1.2 8.9.9 3.6c.7.5 1.6.7 2.5.7.9 0 1.8-.3 2.5-.8.4-.3.8-.7 1.2-1.1C7.9 1.7 8.7 1 9.8 1h.5c.8.1 1.5.6 2 1.4l.3.4.3-.4c.5-.8 1.2-1.3 2-1.4h.5c1.1 0 1.8.8 2.7 1.6.4.4.8.8 1.2 1.1.6.4 1.3.7 2 .8h.7c.8 0 1.6-.3 2.3-.7-.1 2.6-1 4.2-2.3 5.2-.4 0-.6.1-.9.3z" />
@@ -86,16 +86,17 @@ const logoutClick = async () => {
             </router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'pizzas' }"
-              class="flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 text-white rounded md:bg-transparent uppercase">
-              Pizze
-            </router-link>
-          </li>
-          <li>
             <a href="#menu"
               class="flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 text-white rounded md:bg-transparent uppercase">
-              Menu
+              Promozioni
             </a>
+          </li>
+          <li>
+            <router-link :to="{ name: 'pizzas' }"
+              class="flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 rounded md:bg-transparent uppercase"
+              :class="$route.name === 'pizzas' ? ' text-primary' : ' text-white'">
+              Menu
+            </router-link>
           </li>
           <li>
             <div class="max-w-[100px] hidden md:block">

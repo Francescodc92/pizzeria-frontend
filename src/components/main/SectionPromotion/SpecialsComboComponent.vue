@@ -26,18 +26,10 @@ const combosArray = ref([
 </script>
 
 <template>
-  <section
-    id="specialsCombos"
-    class="lg:h-[500px] flex flex-col lg:flex-row my-2 overflow-hidden"
-  >
+  <section id="specialsCombos" class="lg:h-[500px] flex flex-col lg:flex-row my-2">
     <div
-      class="relative h-full lg:w-[45%] before:content-[url('/src/assets/img/h1-img-7n.png')] before:bg-black/20 before:w-full before:inset-0 before:absolute before:flex before:items-center before:justify-center"
-    >
-      <img
-        class="h-full w-full object-cover object-top"
-        :src="getImgPath('img/h1-img-4.jpg')"
-        alt=""
-      />
+      class="overflow-hidden relative h-full lg:w-[45%] before:content-[url('/src/assets/img/h1-img-7n.png')] before:bg-black/20 before:w-full before:inset-0 before:absolute before:flex before:items-center before:justify-center">
+      <img class="h-full w-full object-cover object-top" :src="getImgPath('img/h1-img-4.jpg')" alt="" />
     </div>
     <div class="lg:w-[55%]">
       <div class="pt-4 lg:pt-10 px-3 lg:ps-10">
@@ -48,11 +40,7 @@ const combosArray = ref([
         </p>
       </div>
       <div class="px-3 lg:ps-10">
-        <ComboComponent
-          v-for="(combo, index) in combosArray"
-          :key="index"
-          :comboObj="combo"
-        />
+        <ComboComponent v-for="(combo, index) in combosArray" :key="index" :comboObj="combo" />
       </div>
     </div>
   </section>

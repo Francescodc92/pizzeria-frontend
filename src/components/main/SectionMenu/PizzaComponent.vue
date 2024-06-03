@@ -10,17 +10,11 @@ const { pizzaObj } = defineProps({
 
 <template>
   <div class="py-10">
-    <div class="pizza">
-      <div class="h-[300px] relative">
-        <img
-          class="w-full h-full object-cover object-center"
-          :src="pizzaObj.fullImagePath"
-          :alt="pizzaObj.name"
-        />
-        <span
-          v-if="pizzaObj.discountPercent"
-          class="absolute top-4 right-3 h-12 w-12 flex items-center justify-center bg-primary text-md font-bold rounded-full text-white"
-        >
+    <div class="pizza border border-primary/50 rounded-md overflow-hidden">
+      <div class="w-full h-[350px] relative">
+        <img class="w-full h-full object-cover object-center" :src="pizzaObj.fullImagePath" :alt="pizzaObj.name" />
+        <span v-if="pizzaObj.discountPercent"
+          class="absolute top-4 right-3 h-12 w-12 flex items-center justify-center bg-primary text-md font-bold rounded-full text-white">
           -{{ pizzaObj.discountPercent }}%
         </span>
       </div>
@@ -29,16 +23,10 @@ const { pizzaObj } = defineProps({
           {{ pizzaObj.name }}
         </h3>
 
-        <span
-          class="px-2 py-1 font-bold text-gray-500 line-through"
-          v-if="pizzaObj.discountPercent"
-        >
+        <span class="px-2 py-1 font-bold text-gray-500 line-through" v-if="pizzaObj.discountPercent">
           {{ formatCurrency(pizzaObj.price) }}
         </span>
-        <span
-          class="px-2 py-1 font-bold text-primary"
-          v-if="pizzaObj.discountPercent"
-        >
+        <span class="px-2 py-1 font-bold text-primary">
           {{ formatCurrency(pizzaObj.priceAfterDiscount) }}
         </span>
       </div>

@@ -14,6 +14,9 @@ apiRequest.interceptors.response.use(
     if(error.response.status == 401) {
       return Promise.reject(error);
     }
+    if(error.response.status == 404) {
+      return Promise.reject(error);
+    }
     if (error.response.data.message) {
       toast.error(error.response.data.message, {
         position: "top-right",

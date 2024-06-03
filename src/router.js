@@ -5,6 +5,7 @@ import { store } from "./store.js";
 import HomePage from "./pages/HomePage.vue";
 import NotFound from "./pages/NotFound.vue";
 import PizzasPage from "./pages/PizzasPage.vue";
+import SinglePizza from "./pages/SinglePizza.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,7 +19,11 @@ const router = createRouter({
       path: "/pizzas",
       name: "pizzas",
       component: PizzasPage,
-      //aggiungere la chiamata axios per prendere le l'utente loggato dal back
+    },
+    {
+      path: "/pizzas/:id",
+      name: "single-pizza",
+      component: SinglePizza,
     },
     {
       path: "/:pathMatch(.*)*",
@@ -26,6 +31,9 @@ const router = createRouter({
       component: NotFound,
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 };
+  },
 });
 
 router.beforeEach(async to => {
