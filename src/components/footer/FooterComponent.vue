@@ -43,8 +43,10 @@ const restaurantsArray = ref([
               :key="index"
               class="mb-2"
             >
+            <div class="flex items-center justify-center lg:justify-start flex-wrap gap-1">
               <p class="text-md text-gray-500">{{ restaurant.street }}</p>
               <p class="text-md text-gray-500">{{ restaurant.city }}</p>
+            </div>
               <p class="text-md text-primary">{{ restaurant.contact }}</p>
             </li>
           </ul>
@@ -52,29 +54,29 @@ const restaurantsArray = ref([
         <!-- section top left-->
         <div class="lg:row-span-3 px-2 py-6 lg:py-0 text-center lg:text-start">
           <h2 class="uppercase my-3 text-[#b7903c]">work hours</h2>
-          <ul>
-            <li>
-              <h3 class="text-[#b7903c] uppercase mb-1">monday</h3>
-              <p class="text-primary">Kitchen Closed</p>
-            </li>
-            <li>
-              <h3 class="text-[#b7903c] uppercase mb-1">
+
+          <div>
+            <h3 class="text-[#b7903c] uppercase mb-1">monday</h3>
+            <p class="text-primary">Kitchen Closed</p>
+            <div class="flex items-center justify-center lg:justify-start flex-wrap gap-1 my-2">
+              <h3 class="text-[#b7903c] uppercase">
                 tuesday until friday
               </h3>
               <p class="text-gray-500 capitalize">9:00-22:00</p>
-            </li>
-            <li>
-              <h3 class="text-[#b7903c] uppercase mb-1">
+            </div>
+            <div class="flex items-center justify-center lg:justify-start flex-wrap gap-2 my-2">
+              <h3 class="text-[#b7903c] uppercase">
                 saturday
                 <span class="text-primary ms-1">*</span>
               </h3>
               <p class="text-gray-500 capitalize">saturday 11am to midnight</p>
-            </li>
-            <li>
-              <h3 class="text-[#b7903c] uppercase mb-1">sunday</h3>
+            </div>
+            <div class="flex items-center justify-center lg:justify-start flex-wrap gap-2 my-2">
+              <h3 class="text-[#b7903c] uppercase">sunday</h3>
               <p class="text-gray-500 capitalize">9:00-22:00</p>
-            </li>
-          </ul>
+            </div>
+          </div>
+
           <div class="flex justify-center lg:justify-start mt-10">
             <h3 class="text-[#b7903c] uppercase mb-1">follow us:</h3>
             <ul class="ms-2 flex gap-2">
@@ -118,7 +120,7 @@ const restaurantsArray = ref([
           class="lg:row-span-4 pt-5 flex flex-col justify-between relative min-h-[200px]"
         >
           <h2
-            class="uppercase my-3 text-white font-bold px-8 text-center relative z-10"
+            class="uppercase my-3 text-white bg-black/50 md:bg-transparent font-bold px-8 text-center relative z-10"
           >
             the don peppe crew first and foremost values an authentic, well
             baked slice of pizza.

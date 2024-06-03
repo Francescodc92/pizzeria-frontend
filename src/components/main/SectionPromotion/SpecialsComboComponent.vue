@@ -31,7 +31,7 @@ const combosArray = ref([
     class="lg:h-[500px] flex flex-col lg:flex-row my-2 overflow-hidden"
   >
     <div
-      class="relative h-full lg:w-2/3 before:content-[url('/src/assets/img/h1-img-7n.png')] before:bg-black/20 before:w-full before:inset-0 before:absolute before:flex before:items-center before:justify-center"
+      class="relative h-full lg:w-[45%] before:content-[url('/src/assets/img/h1-img-7n.png')] before:bg-black/20 before:w-full before:inset-0 before:absolute before:flex before:items-center before:justify-center"
     >
       <img
         class="h-full w-full object-cover object-top"
@@ -39,7 +39,7 @@ const combosArray = ref([
         alt=""
       />
     </div>
-    <div class="lg:w-1/3">
+    <div class="lg:w-[55%]">
       <div class="pt-4 lg:pt-10 px-3 lg:ps-10">
         <h2 class="text-xl uppercase font-bold mb-2">Specials*</h2>
         <p class="text-zinc-400 text-sm">

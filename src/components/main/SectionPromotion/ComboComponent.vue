@@ -14,7 +14,7 @@ const { comboObj } = defineProps({
     </div>
     <div>
       <h3 class="uppercase mb-3 font-[500]">{{ comboObj.name }}</h3>
-      <p class="text-xs text-zinc-400">
+      <p class="text-sm text-zinc-400">
         {{ comboObj.description }}
       </p>
     </div>
