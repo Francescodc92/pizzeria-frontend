@@ -1,5 +1,6 @@
 <script setup>
 import { apiRequest } from "../utilities/axios/axiosInstance.js";
+import { useRouter } from 'vue-router'
 import { addToCart } from "../utilities/cart/cart.js";
 import { toast } from "../utilities/toast/toastInstance.js";
 import { formatCurrency } from "../utilities/formatValue/formatCurrency.js"
@@ -8,6 +9,7 @@ let pizzas = ref([]);
 let firstPage = ref(1)
 let currentPage = ref(1)
 let lastPage = ref(0)
+const router = useRouter()
 
 const getPizzas = (button) => {
 
@@ -31,11 +33,19 @@ const addPizzaToCart = (pizzaId) => {
   });
 }
 
+const goBack = () => {
+  router.go(-1)
+}
+
 onMounted(() => getPizzas());
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-3">
+  <div class="max-w-6xl mx-auto px-3 relative">
+    <button @click="goBack"
+      class="absolute top-0 left-0 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-md">
+      <font-awesome-icon icon="fa-solid fa-arrow-left" />
+    </button>
     <h2 class=" text-center text-3xl uppercase my-5 text-primary font-bold">Menu</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-y-5 gap-x-3">
 

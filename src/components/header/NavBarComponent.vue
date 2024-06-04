@@ -16,6 +16,8 @@ const logoutClick = async () => {
     position: "top-right",
   });
 };
+
+const openCartModal = () => store.cartModalOpen = !store.cartModalOpen;
 </script>
 
 <template>
@@ -116,7 +118,7 @@ const logoutClick = async () => {
             </a>
           </li>
           <li>
-            <a href="#"
+            <button @click="openCartModal"
               class="group flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 text-white rounded md:bg-transparent uppercase">
               <div class="relative flex gap-1 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20">
@@ -135,7 +137,7 @@ const logoutClick = async () => {
                 </div>
                 cart
               </div>
-            </a>
+            </button>
           </li>
         </ul>
       </div>

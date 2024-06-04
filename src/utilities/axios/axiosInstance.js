@@ -10,11 +10,10 @@ const apiRequest = axios.create({
 apiRequest.interceptors.response.use(
   (response) => response,
   (error) => {
-
-    if(error.response.status == 401) {
+    if (error.response.status == 401) {
       return Promise.reject(error);
     }
-    if(error.response.status == 404) {
+    if (error.response.status == 404) {
       return Promise.reject(error);
     }
     if (error.response.data.message) {
@@ -22,7 +21,6 @@ apiRequest.interceptors.response.use(
         position: "top-right",
       });
     } else if (error.response.data.error) {
-      
       toast.error(error.response.data.error, {
         position: "top-right",
       });

@@ -30,6 +30,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
   faMagnifyingGlass,
@@ -44,7 +48,11 @@ library.add(
   faLinkedinIn,
   faHeart,
   faQuoteLeft,
-  faQuoteRight
+  faQuoteRight,
+  faArrowLeft,
+  faTrash,
+  faMinus,
+  faPlus
 );
 
 createApp(App)
