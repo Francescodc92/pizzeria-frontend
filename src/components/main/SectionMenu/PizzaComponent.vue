@@ -10,7 +10,8 @@ const { pizzaObj } = defineProps({
 
 <template>
   <div class="py-10">
-    <div class="pizza border border-primary/50 rounded-md overflow-hidden">
+    <router-link :to="{ name: 'single-pizza', params: { id: pizzaObj.id } }"
+      class="pizza border border-primary/50  overflow-hidden block cursor-pointer hover:border-primary rounded-md">
       <div class="w-full h-[350px] relative">
         <img class="w-full h-full object-cover object-center" :src="pizzaObj.fullImagePath" :alt="pizzaObj.name" />
         <span v-if="pizzaObj.discountPercent"
@@ -30,7 +31,7 @@ const { pizzaObj } = defineProps({
           {{ formatCurrency(pizzaObj.priceAfterDiscount) }}
         </span>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 

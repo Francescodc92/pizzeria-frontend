@@ -1,5 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
+import { addToCart } from '../utilities/cart/cart.js'
 import { formatCurrency } from '../utilities/formatValue/formatCurrency.js';
 import { onMounted, ref } from "vue";
 import { apiRequest } from "../utilities/axios/axiosInstance.js";
@@ -8,6 +9,8 @@ const route = useRoute()
 const router = useRouter()
 const pizzaId = route.params.id
 const pizza = ref({})
+const quantity = ref(1)
+
 
 const getPizza = () => {
   apiRequest.get(`/api/pizzas/${pizzaId}`)
@@ -23,30 +26,82 @@ const getPizza = () => {
     })
 }
 
+const changeQuantity = (button) => {
+  if (button == "decrement") {
+    if (quantity.value > 1) {
+      quantity.value = quantity.value - 1
+    }
+  } else if (button == "increment") {
+    quantity.value = quantity.value + 1
+  }
+}
+
+const addPizzaToCart = (pizzaId) => {
+  addToCart(pizzaId, quantity.value)
+  toast.success("pizza aggiunta al carrello", {
+    position: "top-right"
+  });
+}
+
 onMounted(() => getPizza());
 
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto flex my-10 min-h-[500px]">
-    <div class="h-[250px] relative">
-      <img class="w-full h-full object-contain object-center" :src="pizza.fullImagePath" :alt="pizza.name" />
+  <div class="max-w-6xl mx-auto md:flex my-10 min-h-[350px] px-3 border border-primary  md:border-none rounded-md">
+    <div class="md:h-[250px] h-[350px] rounded-t-md md:rounded-md md:w-1/2 overflow-hidden">
+      <img class="w-full max-h-full object-contain object-center" :src="pizza.fullImagePath" :alt="pizza.name" />
     </div>
-    <div class="text-center text-lg mt-3">
-      <h3 class="uppercase text-[#b68a2c]">
-        {{ pizza.name }}
-      </h3>
+    <div class=" text-lg px-3 flex flex-col md:w-1/2">
+      <div class="flex-1 flex flex-col gap-2">
+        <h3 class="uppercase text-[#b68a2c] text-3xl text-center mb-4">
+          {{ pizza.name }}
+        </h3>
+        <p>{{ pizza.description }}</p>
+        <p v-if="pizza.discountPercent">
+          promozione
+          <span class="text-primary font-semibold text-xl">-{{
+            pizza.discountPercent }}%
+          </span>
+        </p>
+        <div class="flex">
+          <span class=" py-1 px-2 font-bold text-gray-500 line-through" v-if="pizza.discountPercent">
+            {{ formatCurrency(pizza.price) }}
+          </span>
+          <span class=" py-1 font-bold text-primary">
+            {{ formatCurrency(pizza.priceAfterDiscount) }}
+          </span>
+        </div>
 
-      <span class="px-2 py-1 font-bold text-gray-500 line-through" v-if="pizza.discountPercent">
-        {{ formatCurrency(pizza.price) }}
-      </span>
-      <span class="px-2 py-1 font-bold text-primary">
-        {{ formatCurrency(pizza.priceAfterDiscount) }}
-      </span>
-    </div>
-    <div class="flex items-center justify-center gap-3 py-3">
-      <button @click="addToCart(pizza)" class="bg-primary text-white px-5 py-2 rounded text-sm cursor-pointer">Aggiungi
-        al carrello</button>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-10 items-center justify-center md:justify-start py-6">
+        <button @click="addPizzaToCart(pizza.id)"
+          class="bg-primary hover:bg-primary/80 text-white px-5 py-2 rounded text-sm cursor-pointer">
+          Aggiungi
+          al carrello
+        </button>
+
+        <div class=" flex items-center gap-3">
+          <label for="quantity">quantità</label>
+          <button type="button" id="decrement-button" @click="changeQuantity('decrement')"
+            class="bg-primary hover:bg-primary/80 text-white  flex items-center justify-center border rounded-md h-10 w-10 ">
+            <svg class="w-2.5 h-2.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+            </svg>
+          </button>
+          {{ quantity }}
+          <button type="button" id="increment-button" @click="changeQuantity('increment')"
+            class="bg-primary hover:bg-primary/80 text-white  flex items-center justify-center border rounded-md h-10 w-10 ">
+            <svg class="w-2.5 h-2.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 1v16M1 9h16" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </template>
