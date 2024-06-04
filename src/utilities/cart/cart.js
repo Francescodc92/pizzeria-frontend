@@ -1,4 +1,5 @@
 import { store } from "../../store";
+import { setDataInLocalStorage } from "../../utilities/localStorage/localStorageHelper";
 export const addToCart = (pizzaId, quantity) => {
   const pizzaToAdd = {
     pizzaId,
@@ -11,4 +12,6 @@ export const addToCart = (pizzaId, quantity) => {
   }
 
   store.cart.push(pizzaToAdd);
+
+  setDataInLocalStorage("cart", store.cart);
 };
