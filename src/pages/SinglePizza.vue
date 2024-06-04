@@ -47,7 +47,6 @@ const goBack = () => {
   router.go(-1)
 }
 
-// Osserva le modifiche a $route
 watch(() => route.params.id, () => {
   pizzaId.value = route.params.id;
 
@@ -77,7 +76,7 @@ watch(() => route.params.id, () => {
           {{ pizza.name }}
         </h3>
         <p>{{ pizza.description }}</p>
-        <div class="flex">
+        <div class="flex justify-center md:justify-start">
           <span class=" py-1 px-2 font-bold text-gray-500 line-through" v-if="pizza.discountPercent">
             {{ formatCurrency(pizza.price) }}
           </span>

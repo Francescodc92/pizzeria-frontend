@@ -1,6 +1,7 @@
 <script setup>
 import { formatCurrency } from "../../utilities/formatValue/formatCurrency";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { store } from "../../store.js";
 import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { useRouter } from "vue-router";
 import { getPizzaQuantity, setNewPizzaQuantity, removeToCart, getTotalPrice } from "../../utilities/cart/cart.js";
@@ -19,8 +20,8 @@ const { pizzaId, pizzaQuantity } = defineProps({
 const pizza = ref({});
 const router = useRouter();
 const totalPrice = ref(0);
+const pizzaIndex = store.cart.findIndex((pizza) => pizza.pizzaId == pizzaId)
 
-console.log(pizza.value)
 const openPizzaInfo = (id) => {
   router.push({ name: 'single-pizza', params: { id } })
 }
@@ -43,9 +44,12 @@ const setQuantity = (button) => {
 
 
 const removePizza = () => {
-  console.log("cancella")
   removeToCart(pizzaId)
 }
+
+watch(() => store.cart[pizzaIndex].quantity, () => {
+  totalPrice.value = getTotalPrice(pizzaId, pizza.value.priceAfterDiscount)
+}, { immediate: true });
 
 onMounted(() => {
   apiRequest.get(`/api/pizzas/${pizzaId}`)

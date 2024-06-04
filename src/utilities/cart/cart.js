@@ -38,6 +38,5 @@ export function removeToCart(pizzaId) {
 
 export const getTotalPrice = (pizzaId, pizzaPrice) => {
   const quantity = getPizzaQuantity(pizzaId);
-  console.log(quantity, pizzaPrice);
   return pizzaPrice * quantity;
 };

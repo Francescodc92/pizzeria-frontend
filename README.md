@@ -9,6 +9,11 @@
 
 - aggiungere una transizione per il cambio pagina
 
+## bugs
+
+- sistemare il calcolo del totale quanto di aggiungono più elementi dalla pagina della singola pizza
+- se l'utente inserisce una pizza nel carrello e questa viene resa non disponibile al caricamento del carrello quella pizza andrà eliminata o verrà segnalata come non presente evitando l'ordine della stessa
+
 Reservations
 
 - valutare la possibilità di aggiungere una tabella reservations nel back per dare la possibilità di prenotare un tavolo
