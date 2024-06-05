@@ -10,6 +10,7 @@
 
 - effettuare la chiamata al backend per effettuare il pagamento
 - trattare gli errori
+- terminare il backend per il salvataggio degli ordini dopo il pagamento
 
 ## bugs
 
@@ -34,4 +35,5 @@ Reservations
 - SWIPER
 - VUE ROUTER
 - FONTAWESOME
+- BRAINTREE (gestione pagamenti)
 - Git e Github
