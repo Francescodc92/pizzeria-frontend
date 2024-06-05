@@ -2,6 +2,7 @@
 import { store } from "../../store.js";
 import CartPizzaComponent from "./CartPizzaComponent.vue";
 import { formatCurrency } from "../../utilities/formatValue/formatCurrency";
+import { getCartTotalPrice } from "../../utilities/cart/cart.js";
 import { ref, watch } from "vue";
 let cartItems = ref(store.cart);
 
@@ -26,6 +27,13 @@ const closeModal = () => store.cartModalOpen = false
     <template v-if="store.cart.length > 0">
       <CartPizzaComponent v-for="pizza in cartItems" :key="pizza.pizzaId" :pizzaId="pizza.pizzaId"
         :pizzaQuantity="pizza.quantity" />
+
+      <div class="fixed bottom-0 w-full bg-slate-600 text-white">
+        <div>
+          <span>Totale:</span>
+          <p>{{ formatCurrency(getCartTotalPrice()) }}</p>
+        </div>
+      </div>
     </template>
     <h3 v-else class="text-center text-2xl text-gray-500 uppercase mt-6">Il carrello è vuoto</h3>
   </div>

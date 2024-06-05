@@ -4,7 +4,8 @@ import { onMounted, ref, watch } from "vue";
 import { store } from "../../store.js";
 import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { useRouter } from "vue-router";
-import { getPizzaQuantity, setNewPizzaQuantity, removeToCart, getTotalPrice } from "../../utilities/cart/cart.js";
+import { getPizzaQuantity, updatePizza, removeToCart, getPizzaTotalPrice } from "../../utilities/cart/cart.js";
+import QuantityButtons from "../QuantityButtons.vue";
 
 const { pizzaId, pizzaQuantity } = defineProps({
   pizzaId: {
@@ -19,8 +20,8 @@ const { pizzaId, pizzaQuantity } = defineProps({
 
 const pizza = ref({});
 const router = useRouter();
-const totalPrice = ref(0);
 const pizzaIndex = store.cart.findIndex((pizza) => pizza.pizzaId == pizzaId)
+const totalPrice = ref(store.cart[pizzaIndex].totalPrice);
 
 const openPizzaInfo = (id) => {
   router.push({ name: 'single-pizza', params: { id } })
@@ -36,26 +37,26 @@ const setQuantity = (button) => {
     }
   }
 
-  setNewPizzaQuantity(pizzaId, quantity)
+  updatePizza(pizzaId, quantity)
 
-  totalPrice.value = getTotalPrice(pizzaId, pizza.value.priceAfterDiscount)
+  totalPrice.value = getPizzaTotalPrice(pizzaId)
 }
 
 
+watch(() => store.cart[pizzaIndex].quantity, () => {
+  totalPrice.value = getPizzaTotalPrice(pizzaId)
+}, { immediate: true })
 
 const removePizza = () => {
   removeToCart(pizzaId)
 }
 
-watch(() => store.cart[pizzaIndex].quantity, () => {
-  totalPrice.value = getTotalPrice(pizzaId, pizza.value.priceAfterDiscount)
-}, { immediate: true });
 
 onMounted(() => {
   apiRequest.get(`/api/pizzas/${pizzaId}`)
     .then((response) => {
       pizza.value = response.data.data;
-      totalPrice.value = getTotalPrice(pizzaId, pizza.value.priceAfterDiscount)
+      totalPrice.value = getPizzaTotalPrice(pizzaId)
     })
 })
 </script>
@@ -87,15 +88,7 @@ onMounted(() => {
         </div>
         <div
           class=" flex items-center justify-center sm:justify-start border-b border-primary sm:border-0 pb-2 sm:pb-0 gap-3 order-1 mt-2 sm:mt-0 sm:order-2">
-          <button type="button" id="decrement-button" @click="setQuantity('decrement')"
-            class="bg-primary hover:bg-primary/80 text-white hover:text-white/50 flex items-center justify-center border rounded-md h-10 w-10 ">
-            <font-awesome-icon icon="fa-solid fa-minus" />
-          </button>
-          {{ pizzaQuantity }}
-          <button type="button" id="increment-button" @click="setQuantity('increment')"
-            class="bg-primary hover:bg-primary/80 text-white hover:text-white/50  flex items-center justify-center border rounded-md h-10 w-10 ">
-            <font-awesome-icon icon="fa-solid fa-plus" />
-          </button>
+          <QuantityButtons @changeQuantity="setQuantity" :quantity="pizzaQuantity" />
         </div>
       </div>
     </div>

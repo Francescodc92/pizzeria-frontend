@@ -4,30 +4,45 @@ import {
   setDataInLocalStorage,
 } from "../../utilities/localStorage/localStorageHelper";
 
-export const addToCart = (pizzaId, quantity) => {
+export const addToCart = (pizzaId, quantity, pizzaPrice) => {
   const pizzaToAdd = {
     pizzaId,
     quantity,
+    totalPrice: 0,
+    initialPrice: pizzaPrice,
   };
 
   if (store.cart.some((pizza) => pizza.pizzaId == pizzaId)) {
     let currentQuantity = getPizzaQuantity(pizzaId);
-    return setNewPizzaQuantity(pizzaId, (currentQuantity += quantity));
+    let newPizzaQuantity = currentQuantity + quantity;
+    return updatePizza(pizzaId, newPizzaQuantity);
   }
 
   store.cart.push(pizzaToAdd);
+  pizzaToAdd.totalPrice = updatePizzaTotalPrice(pizzaId, pizzaPrice, quantity);
 
   setDataInLocalStorage("cart", store.cart);
 };
 
 export const getPizzaQuantity = (pizzaId) => {
-  return getDataFromLocalStorage("cart").find(
-    (pizza) => pizza.pizzaId == pizzaId
-  ).quantity;
+  const cartItems = getDataFromLocalStorage("cart") || [];
+  const pizza = cartItems.find((pizza) => pizza.pizzaId == pizzaId);
+  if (!pizza) return 0;
+  return pizza.quantity;
 };
 
-export const setNewPizzaQuantity = (pizzaId, newQuantity) => {
-  store.cart.find((pizza) => pizza.pizzaId == pizzaId).quantity = newQuantity;
+export const updatePizza = (pizzaId, newQuantity) => {
+  const pizzaToUpdate = store.cart.find((pizza) => {
+    return pizza.pizzaId == pizzaId;
+  });
+
+  if (!pizzaToUpdate) return;
+  pizzaToUpdate.quantity = newQuantity;
+  pizzaToUpdate.totalPrice = updatePizzaTotalPrice(
+    pizzaId,
+    pizzaToUpdate.initialPrice,
+    newQuantity
+  );
   setDataInLocalStorage("cart", store.cart);
 };
 
@@ -36,7 +51,32 @@ export function removeToCart(pizzaId) {
   setDataInLocalStorage("cart", store.cart);
 }
 
-export const getTotalPrice = (pizzaId, pizzaPrice) => {
-  const quantity = getPizzaQuantity(pizzaId);
-  return pizzaPrice * quantity;
+export const getPizzaCartIndex = (pizzaId) => {
+  return store.cart.findIndex((pizza) => pizza.pizzaId == pizzaId);
+};
+
+export const getPizzaTotalPrice = (pizzaId) => {
+  const pizza = store.cart.find((pizza) => {
+    return pizza.pizzaId == pizzaId;
+  });
+
+  return pizza.totalPrice;
+};
+
+export const updatePizzaTotalPrice = (pizzaId, initialPrice, quantity) => {
+  const pizza = store.cart.find((pizza) => {
+    return pizza.pizzaId == pizzaId;
+  });
+
+  if (!pizza) return 0;
+
+  return (pizza.totalPrice = initialPrice * quantity);
+};
+
+export const getCartTotalPrice = () => {
+  let totalPrice = 0;
+  store.cart.forEach((pizza) => {
+    totalPrice += getPizzaTotalPrice(pizza.pizzaId);
+  });
+  return totalPrice;
 };

@@ -26,8 +26,9 @@ const getPizzas = (button) => {
     })
 };
 
-const addPizzaToCart = (pizzaId) => {
-  addToCart(pizzaId, 1)
+const addPizzaToCart = (pizzaId, priceAfterDiscount) => {
+  const quantity = 1
+  addToCart(pizzaId, quantity, priceAfterDiscount)
   toast.success("pizza aggiunta al carrello", {
     position: "top-right"
   });
@@ -73,7 +74,7 @@ onMounted(() => getPizzas());
             </div>
           </router-link>
           <div class="flex items-center justify-center gap-3 py-3">
-            <button @click="addPizzaToCart(pizza.id)"
+            <button @click="addPizzaToCart(pizza.id, pizza.priceAfterDiscount)"
               class="bg-primary text-white px-5 py-2 rounded text-sm cursor-pointer">Aggiungi al carrello</button>
           </div>
 

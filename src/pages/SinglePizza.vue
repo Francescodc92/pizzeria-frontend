@@ -2,13 +2,14 @@
 import { useRoute, useRouter } from 'vue-router'
 import { addToCart } from '../utilities/cart/cart.js'
 import { formatCurrency } from '../utilities/formatValue/formatCurrency.js';
-import { onMounted, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { apiRequest } from "../utilities/axios/axiosInstance.js";
 import { toast } from "../utilities/toast/toastInstance.js";
+import QuantityButtons from '../components/QuantityButtons.vue';
 
 const route = useRoute()
 const router = useRouter()
-const pizzaId = ref(route.params.id) // Usa ref per pizzaId
+const pizzaId = ref(route.params.id)
 const pizza = ref({})
 const quantity = ref(1)
 
@@ -37,7 +38,7 @@ const changeQuantity = (button) => {
 }
 
 const addPizzaToCart = (pizzaId) => {
-  addToCart(pizzaId, quantity.value)
+  addToCart(pizzaId, quantity.value, pizza.value.priceAfterDiscount)
   toast.success("pizza aggiunta al carrello", {
     position: "top-right"
   });
@@ -96,20 +97,7 @@ watch(() => route.params.id, () => {
 
         <div class=" flex items-center gap-3 order-1 mt-2 sm:mt-0 sm:order-2">
           <label for="quantity">quantità</label>
-          <button type="button" id="decrement-button" @click="changeQuantity('decrement')"
-            class="bg-primary hover:bg-primary/80 text-white  flex items-center justify-center border rounded-md h-10 w-10 ">
-            <svg class="w-2.5 h-2.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
-            </svg>
-          </button>
-          {{ quantity }}
-          <button type="button" id="increment-button" @click="changeQuantity('increment')"
-            class="bg-primary hover:bg-primary/80 text-white  flex items-center justify-center border rounded-md h-10 w-10 ">
-            <svg class="w-2.5 h-2.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 1v16M1 9h16" />
-            </svg>
-          </button>
+          <QuantityButtons @changeQuantity="changeQuantity" :quantity="quantity" />
         </div>
 
       </div>
