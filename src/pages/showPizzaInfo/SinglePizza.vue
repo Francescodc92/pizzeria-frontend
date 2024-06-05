@@ -1,11 +1,11 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { addToCart } from '../utilities/cart/cart.js'
-import { formatCurrency } from '../utilities/formatValue/formatCurrency.js';
+import { addToCart } from '../../utilities/cart/cart.js'
+import { formatCurrency } from '../../utilities/formatValue/formatCurrency.js';
 import { ref, watch } from "vue";
-import { apiRequest } from "../utilities/axios/axiosInstance.js";
-import { toast } from "../utilities/toast/toastInstance.js";
-import QuantityButtons from '../components/QuantityButtons.vue';
+import { apiRequest } from "../../utilities/axios/axiosInstance.js";
+import { toast } from "../../utilities/toast/toastInstance.js";
+import QuantityButtons from '../../components/QuantityButtons.vue';
 
 const route = useRoute()
 const router = useRouter()
@@ -37,8 +37,8 @@ const changeQuantity = (button) => {
   }
 }
 
-const addPizzaToCart = (pizzaId) => {
-  addToCart(pizzaId, quantity.value, pizza.value.priceAfterDiscount)
+const addPizzaToCart = (pizza) => {
+  addToCart(pizza, quantity.value)
   toast.success("pizza aggiunta al carrello", {
     position: "top-right"
   });
@@ -89,7 +89,7 @@ watch(() => route.params.id, () => {
       </div>
 
       <div class="flex flex-col sm:flex-row gap-5 items-center justify-center md:justify-start py-6">
-        <button @click="addPizzaToCart(pizza.id)"
+        <button @click="addPizzaToCart(pizza)"
           class="bg-primary hover:bg-primary/80 text-white px-5 py-2 rounded text-sm cursor-pointer order-2 sm:order-1">
           Aggiungi
           al carrello

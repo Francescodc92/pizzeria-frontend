@@ -4,13 +4,17 @@
 
 ## TODO
 
-- creare un modale o una pagina per il carrello
-- inserire nel carrello solo gli id dei prodotti per poi prendere i dettagli dal backend , in modo che se un prodotto cambia prezzo dopo essere stato salvato nel local storage venga mostrato il prezzo aggiornato nel carrello
+- aggiungere una transizione per il cambio rotta
 
-- aggiungere una transizione per il cambio pagina
+## pagamenti
+
+- effettuare la chiamata al backend per effettuare il pagamento
+- trattare gli errori
 
 ## bugs
 
+- dare una sistemata alle funzioni del carrello dato che adesso salviamo anche il prodotto nel carrello
+- osservare il comportamento del carrello al cambio dei dai tal backend
 - se l'utente inserisce una pizza nel carrello e questa viene resa non disponibile al caricamento del carrello quella pizza andrà eliminata o verrà segnalata come non presente evitando l'ordine della stessa
 
 Reservations

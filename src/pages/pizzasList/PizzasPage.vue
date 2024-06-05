@@ -1,9 +1,9 @@
 <script setup>
-import { apiRequest } from "../utilities/axios/axiosInstance.js";
+import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { useRouter } from 'vue-router'
-import { addToCart } from "../utilities/cart/cart.js";
-import { toast } from "../utilities/toast/toastInstance.js";
-import { formatCurrency } from "../utilities/formatValue/formatCurrency.js"
+import { addToCart } from "../../utilities/cart/cart.js";
+import { toast } from "../../utilities/toast/toastInstance.js";
+import { formatCurrency } from "../../utilities/formatValue/formatCurrency.js"
 import { reactive, ref, onMounted } from "vue";
 let pizzas = ref([]);
 let firstPage = ref(1)
@@ -26,9 +26,9 @@ const getPizzas = (button) => {
     })
 };
 
-const addPizzaToCart = (pizzaId, priceAfterDiscount) => {
+const addPizzaToCart = (pizza) => {
   const quantity = 1
-  addToCart(pizzaId, quantity, priceAfterDiscount)
+  addToCart(pizza, quantity)
   toast.success("pizza aggiunta al carrello", {
     position: "top-right"
   });
@@ -74,7 +74,7 @@ onMounted(() => getPizzas());
             </div>
           </router-link>
           <div class="flex items-center justify-center gap-3 py-3">
-            <button @click="addPizzaToCart(pizza.id, pizza.priceAfterDiscount)"
+            <button @click="addPizzaToCart(pizza)"
               class="bg-primary text-white px-5 py-2 rounded text-sm cursor-pointer">Aggiungi al carrello</button>
           </div>
 

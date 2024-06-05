@@ -11,7 +11,7 @@ export const register = async (formData) => {
   return message;
 };
 
-const getSanctumToken = async () => {
+export const getSanctumToken = async () => {
   await apiRequest.get("/sanctum/csrf-cookie");
 };
 

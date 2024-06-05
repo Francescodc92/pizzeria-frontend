@@ -4,22 +4,27 @@ import {
   setDataInLocalStorage,
 } from "../../utilities/localStorage/localStorageHelper";
 
-export const addToCart = (pizzaId, quantity, pizzaPrice) => {
+export const addToCart = (pizzaElement, quantity) => {
   const pizzaToAdd = {
-    pizzaId,
+    pizzaId: pizzaElement.id,
+    pizzaElement,
     quantity,
     totalPrice: 0,
-    initialPrice: pizzaPrice,
+    initialPrice: pizzaElement.price,
   };
 
-  if (store.cart.some((pizza) => pizza.pizzaId == pizzaId)) {
-    let currentQuantity = getPizzaQuantity(pizzaId);
+  if (store.cart.some((pizza) => pizza.pizzaId == pizzaElement.id)) {
+    let currentQuantity = getPizzaQuantity(pizzaElement.id);
     let newPizzaQuantity = currentQuantity + quantity;
-    return updatePizza(pizzaId, newPizzaQuantity);
+    return updatePizza(pizzaElement.id, newPizzaQuantity);
   }
 
   store.cart.push(pizzaToAdd);
-  pizzaToAdd.totalPrice = updatePizzaTotalPrice(pizzaId, pizzaPrice, quantity);
+  pizzaToAdd.totalPrice = updatePizzaTotalPrice(
+    pizzaElement.id,
+    pizzaElement.price,
+    quantity
+  );
 
   setDataInLocalStorage("cart", store.cart);
 };

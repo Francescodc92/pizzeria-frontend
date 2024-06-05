@@ -2,10 +2,12 @@ import { createWebHistory, createRouter } from "vue-router";
 import { apiRequest } from "./utilities/axios/axiosInstance.js";
 import { setDataInLocalStorage } from "./utilities/localStorage/localStorageHelper.js";
 import { store } from "./store.js";
-import HomePage from "./pages/HomePage.vue";
+import HomePage from "./pages/home/HomePage.vue";
 import NotFound from "./pages/NotFound.vue";
-import PizzasPage from "./pages/PizzasPage.vue";
-import SinglePizza from "./pages/SinglePizza.vue";
+import PizzasPage from "./pages/pizzasList/PizzasPage.vue";
+import SinglePizza from "./pages/showPizzaInfo/SinglePizza.vue";
+import CheckoutPage from "./pages/checkout/CheckoutPage.vue";
+import { toast } from "./utilities/toast/toastInstance.js";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -26,6 +28,19 @@ const router = createRouter({
       component: SinglePizza,
     },
     {
+      path: "/checkout",
+      name: "checkout",
+      component: CheckoutPage,
+      beforeEnter: (to, from) => {
+        if (!store.user) {
+          toast.error("devi prima effettuare il login", {
+            position: "top-right",
+          });
+          return { name: "home" };
+        }
+      },
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "not-found",
       component: NotFound,
@@ -36,14 +51,14 @@ const router = createRouter({
   },
 });
 
-router.beforeEach(async to => {
-    apiRequest.get("/api/user")
+router.beforeEach(async (to) => {
+  apiRequest
+    .get("/api/user")
     .then((response) => {})
     .catch((error) => {
       store.user = null;
       setDataInLocalStorage("user", null);
-    })
-  ;
-})
+    });
+});
 
-export {router}
+export { router };
