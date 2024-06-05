@@ -22,6 +22,7 @@ const pizza = ref({});
 const router = useRouter();
 const pizzaIndex = store.cart.findIndex((pizza) => pizza.pizzaId == pizzaId)
 const totalPrice = ref(store.cart[pizzaIndex].totalPrice);
+const cartPizza = store.cart[pizzaIndex]
 
 const openPizzaInfo = (id) => {
   router.push({ name: 'single-pizza', params: { id } })
@@ -43,7 +44,7 @@ const setQuantity = (button) => {
 }
 
 
-watch(() => store.cart[pizzaIndex].quantity, () => {
+watch(() => store.cart[pizzaIndex]?.quantity, () => {
   totalPrice.value = getPizzaTotalPrice(pizzaId)
 }, { immediate: true })
 
@@ -63,7 +64,7 @@ onMounted(() => {
 
 <template>
 
-  <div class="py-5 flex px-3">
+  <div class="py-5 flex px-3 relative">
     <div class="flex flex-col sm:flex-row sm:items-center border gap-3 flex-1">
       <div class="w-[150px] h-[150px] relative self-center">
         <img class="w-full h-full object-cover object-center" :src="pizza.fullImagePath" :alt="pizza.name" />
@@ -92,7 +93,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class=" flex md:items-center justify-center">
+    <div class=" flex md:items-center justify-center absolute top-3 right-3 sm:static">
       <button
         class="bg-primary hover:bg-primary/80 text-white  flex items-center justify-center border rounded-md h-10 w-10"
         @click="removePizza()">
