@@ -16,15 +16,14 @@ watch(() => store.cart, () => {
   products.value = store.cart
 })
 
-// onMounted(() => {
-//   loadingPaymentElement.value = true
-//   apiRequest.get("/api/orders/generate/token")
-//     .then((response) => {
-//       loadingPaymentElement.value = false
-//       tokenBraintree.value = response.data.token;
-//       console.log(tokenBraintree.value)
-//     })
-// });
+onMounted(() => {
+  loadingPaymentElement.value = true
+  apiRequest.get("/api/orders/generate/token")
+    .then((response) => {
+      loadingPaymentElement.value = false
+      tokenBraintree.value = response.data.token;
+    })
+});
 </script>
 
 <template>
@@ -57,7 +56,8 @@ watch(() => store.cart, () => {
 
     <!-- v-if="tokenBraintree" aggiungere -->
 
-    <PaymentComponent :authorization="tokenBraintree" :loadingPayment="loadingPaymentElement" :products="products" />
+    <PaymentComponent v-if="tokenBraintree" :authorization="tokenBraintree" :loadingPayment="loadingPaymentElement"
+      :products="products" />
   </div>
 
   <AddressModalComponent />
