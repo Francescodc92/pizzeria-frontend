@@ -11,6 +11,15 @@
 - effettuare la chiamata al backend per effettuare il pagamento
 - trattare gli errori
 - terminare il backend per il salvataggio degli ordini dopo il pagamento
+- chiudere il modale del carrello una volta andati nella pagina di checkout e svuotarlo una volta effettuato il pagamento
+
+## aggiungere una sezione/pagina per la lista degli ordini dell'utente dove potrà vedere gli ordini effettuati
+
+## passi per riattivare il componente per il pagamento
+
+- inserire il v-if nel componente checkout page
+- decommentare il codice al monted nel componente checkout page
+- decommentare il codice al monted nel componente payment
 
 ## bugs
 

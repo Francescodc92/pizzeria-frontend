@@ -4,14 +4,17 @@ import { store } from "../../store.js";
 import { toast } from "../../utilities/toast/toastInstance.js";
 import { getImgPath } from "../../utilities/imagePath/getPath.js";
 import { logout } from "../../utilities/auth/authFunctions.js";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
+
 let showMenu = ref(false);
+const router = useRouter();
 let logoutModalOpen = ref(false);
 const emit = defineEmits(["openLoginModal"]);
 
 const logoutClick = async () => {
   const message = await logout();
   logoutModalOpen.value = false;
+  router.push({ name: "home" });
   toast.success(message, {
     position: "top-right",
   });
@@ -131,7 +134,7 @@ const openCartModal = () => store.cartModalOpen = !store.cartModalOpen;
                   <path fill="currentColor"
                     d="M18.5 4c-.2 0-.4-.1-.4-.3l-.5-1.1c-.1-.2 0-.5.2-.7.2-.1.5 0 .7.2l.5 1.1c.1.2 0 .5-.2.7-.1.1-.2.1-.3.1zM23 18.5c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5zm0-4c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5 1.5-.7 1.5-1.5-.7-1.5-1.5-1.5zM25 12.6c-.1 0-.3-.1-.4-.2-.5-.6-1.2-1-2-1.3-.6-.1-1.1-.1-1.1-.1-.3 0-.5-.2-.5-.5s.2-.5.5-.5c.1 0 2.3-.1 3.9 1.8.2.2.2.5-.1.7-.1 0-.2.1-.3.1zM11.5 15c-.3 0-.5-.2-.5-.5 0-1.4-1.1-2.5-2.5-2.5H6.7c-.7 0-1.3.3-1.8.7l-2.1 2.1c-.2.2-.5.2-.7 0-.2-.2-.2-.5 0-.7L4.3 12c.7-.7 1.5-1 2.5-1h1.8c1.9 0 3.5 1.6 3.5 3.5-.1.3-.3.5-.6.5zM6 18.5c-1.1 0-2.1-.8-2.4-1.9-.1-.3.1-.5.4-.6.3-.1.5.1.6.4.1.6.7 1.1 1.4 1.1s1.3-.5 1.4-1.1c.1-.3.3-.4.6-.4.3.1.4.3.4.6-.3 1.1-1.3 1.9-2.4 1.9z" />
                 </svg>
-                <div
+                <div v-if="store.cart.length > 0"
                   class="group-hover:text-white absolute -top-[10px] -left-[10px] text-xs flex items-center justify-center w-5 h-5 bg-primary rounded-full">
                   {{ store.cart.length }}
                 </div>

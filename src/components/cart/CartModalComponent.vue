@@ -23,12 +23,12 @@ const closeModal = () => store.cartModalOpen = false
       class="bg-primary hover:bg-primary/80 text-white px-5 py-2 rounded text-sm cursor-pointer order-2 sm:order-1 absolute top-3 right-5 z-50">
       X
     </button>
-    <h1 class="text-3xl font-bold text-primary text-center">Carrello</h1>
 
     <h3 v-if="store.cart.length === 0" class="text-center text-2xl text-gray-500 uppercase mt-6">Il carrello è vuoto
     </h3>
     <template v-else>
       <div class="h-[70%] overflow-y-auto">
+        <h1 class="text-3xl font-bold text-primary text-center">Carrello</h1>
         <CartPizzaComponent v-for="pizza in cartItems" :key="pizza.pizzaId" :pizzaId="pizza.pizzaId"
           :pizzaQuantity="pizza.quantity" />
       </div>

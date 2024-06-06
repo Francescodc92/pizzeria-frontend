@@ -10,7 +10,7 @@ export const addToCart = (pizzaElement, quantity) => {
     pizzaElement,
     quantity,
     totalPrice: 0,
-    initialPrice: pizzaElement.price,
+    initialPrice: pizzaElement.priceAfterDiscount,
   };
 
   if (store.cart.some((pizza) => pizza.pizzaId == pizzaElement.id)) {
@@ -22,7 +22,7 @@ export const addToCart = (pizzaElement, quantity) => {
   store.cart.push(pizzaToAdd);
   pizzaToAdd.totalPrice = updatePizzaTotalPrice(
     pizzaElement.id,
-    pizzaElement.price,
+    pizzaElement.priceAfterDiscount,
     quantity
   );
 
