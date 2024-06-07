@@ -29,7 +29,7 @@ const closeModal = () => store.cartModalOpen = false
     <template v-else>
       <div class="h-[70%] overflow-y-auto">
         <h1 class="text-3xl font-bold text-primary text-center">Carrello</h1>
-        <CartPizzaComponent v-for="pizza in cartItems" :key="pizza.pizzaId" :pizzaId="pizza.pizzaId"
+        <CartPizzaComponent v-for="pizza in cartItems" :key="pizza.pizzaElement.id" :pizzaId="pizza.pizzaElement.id"
           :pizzaQuantity="pizza.quantity" />
       </div>
 

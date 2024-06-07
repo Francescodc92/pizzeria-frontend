@@ -35,21 +35,27 @@ onMounted(() => {
       <div class="px-5 py-5 border-b-[1px] border-primary font-semibold text-lg flex-1 overflow-y-auto ">
         <span class="block text-primary text-xs text-center">* Per modificare i prodotti accedi al
           carrello</span>
-        <div v-for="product in products" :key="product.id" class="flex justify-between py-2 ">
-          <p>
-            <span class="text-primary">
-              {{ product.quantity }}
-            </span>
-            {{ product.pizzaElement.name }}
-          </p>
-          <p class="text-primary">{{ formatCurrency(product.totalPrice) }}</p>
-        </div>
+        <template v-if="products.length > 0">
+          <div v-for="product in products" :key="product.id" class="flex justify-between py-2 ">
+            <p>
+              <span class="text-primary">
+                {{ product.quantity }}
+              </span>
+              {{ product.pizzaElement.name }}
+            </p>
+            <p class="text-primary">{{ formatCurrency(product.totalPrice) }}</p>
+          </div>
+        </template>
 
       </div>
 
-      <div class="p-3 py-5 flex justify-between text-xl font-semibold">
+      <div class="p-3 py-5 flex justify-between text-xl font-semibold" v-if="products.length > 0">
         <span>Totale:</span>
         <p>{{ formatCurrency(getCartTotalPrice()) }}</p>
+      </div>
+      <div class="p-3 py-5 flex justify-between text-xl font-semibold" v-else>
+        <span>Totale:</span>
+        <p> {{ formatCurrency(0) }} </p>
       </div>
 
     </div>

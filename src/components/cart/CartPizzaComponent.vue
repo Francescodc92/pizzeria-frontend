@@ -4,7 +4,7 @@ import { onMounted, ref, watch } from "vue";
 import { store } from "../../store.js";
 import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { useRouter } from "vue-router";
-import { getPizzaQuantity, updatePizza, removeToCart, getPizzaTotalPrice } from "../../utilities/cart/cart.js";
+import { getPizzaQuantity, updatePizza, removeToCart, getPizzaTotalPrice, getPizzaCartIndex } from "../../utilities/cart/cart.js";
 import QuantityButtons from "../QuantityButtons.vue";
 
 const { pizzaId, pizzaQuantity } = defineProps({
@@ -20,9 +20,8 @@ const { pizzaId, pizzaQuantity } = defineProps({
 
 const pizza = ref({});
 const router = useRouter();
-const pizzaIndex = store.cart.findIndex((pizza) => pizza.pizzaId == pizzaId)
-const totalPrice = ref(store.cart[pizzaIndex].totalPrice);
-const cartPizza = store.cart[pizzaIndex]
+const pizzaIndex = getPizzaCartIndex(pizzaId);
+const totalPrice = ref(getPizzaTotalPrice(pizzaId));
 
 const openPizzaInfo = (id) => {
   router.push({ name: 'single-pizza', params: { id } })

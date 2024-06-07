@@ -6,14 +6,13 @@ import {
 
 export const addToCart = (pizzaElement, quantity) => {
   const pizzaToAdd = {
-    pizzaId: pizzaElement.id,
     pizzaElement,
     quantity,
     totalPrice: 0,
     initialPrice: pizzaElement.priceAfterDiscount,
   };
 
-  if (store.cart.some((pizza) => pizza.pizzaId == pizzaElement.id)) {
+  if (store.cart.some((pizza) => pizza.pizzaElement.id == pizzaElement.id)) {
     let currentQuantity = getPizzaQuantity(pizzaElement.id);
     let newPizzaQuantity = currentQuantity + quantity;
     return updatePizza(pizzaElement.id, newPizzaQuantity);
@@ -31,14 +30,14 @@ export const addToCart = (pizzaElement, quantity) => {
 
 export const getPizzaQuantity = (pizzaId) => {
   const cartItems = getDataFromLocalStorage("cart") || [];
-  const pizza = cartItems.find((pizza) => pizza.pizzaId == pizzaId);
+  const pizza = cartItems.find((pizza) => pizza.pizzaElement.id == pizzaId);
   if (!pizza) return 0;
   return pizza.quantity;
 };
 
 export const updatePizza = (pizzaId, newQuantity) => {
   const pizzaToUpdate = store.cart.find((pizza) => {
-    return pizza.pizzaId == pizzaId;
+    return pizza.pizzaElement.id == pizzaId;
   });
 
   if (!pizzaToUpdate) return;
@@ -52,17 +51,17 @@ export const updatePizza = (pizzaId, newQuantity) => {
 };
 
 export function removeToCart(pizzaId) {
-  store.cart = store.cart.filter((pizza) => pizza.pizzaId != pizzaId);
+  store.cart = store.cart.filter((pizza) => pizza.pizzaElement.id != pizzaId);
   setDataInLocalStorage("cart", store.cart);
 }
 
 export const getPizzaCartIndex = (pizzaId) => {
-  return store.cart.findIndex((pizza) => pizza.pizzaId == pizzaId);
+  return store.cart.findIndex((pizza) => pizza.pizzaElement.id == pizzaId);
 };
 
 export const getPizzaTotalPrice = (pizzaId) => {
   const pizza = store.cart.find((pizza) => {
-    return pizza.pizzaId == pizzaId;
+    return pizza.pizzaElement.id == pizzaId;
   });
 
   return pizza.totalPrice;
@@ -70,10 +69,10 @@ export const getPizzaTotalPrice = (pizzaId) => {
 
 export const updatePizzaTotalPrice = (pizzaId, initialPrice, quantity) => {
   const pizza = store.cart.find((pizza) => {
-    return pizza.pizzaId == pizzaId;
+    return pizza.pizzaElement.id == pizzaId;
   });
 
-  if (!pizza) return 0;
+  if (!pizza) return;
 
   return (pizza.totalPrice = initialPrice * quantity);
 };
@@ -81,7 +80,7 @@ export const updatePizzaTotalPrice = (pizzaId, initialPrice, quantity) => {
 export const getCartTotalPrice = () => {
   let totalPrice = 0;
   store.cart.forEach((pizza) => {
-    totalPrice += getPizzaTotalPrice(pizza.pizzaId);
+    totalPrice += getPizzaTotalPrice(pizza.pizzaElement.id);
   });
   return totalPrice;
 };
