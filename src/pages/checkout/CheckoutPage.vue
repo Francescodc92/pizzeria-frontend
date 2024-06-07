@@ -60,8 +60,6 @@ onMounted(() => {
 
     </div>
 
-    <!-- v-if="tokenBraintree" aggiungere -->
-
     <PaymentComponent v-if="tokenBraintree" :authorization="tokenBraintree" :loadingPayment="loadingPaymentElement"
       :products="products" />
   </div>

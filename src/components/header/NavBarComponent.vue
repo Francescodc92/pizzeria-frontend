@@ -109,18 +109,18 @@ const openCartModal = () => store.cartModalOpen = !store.cartModalOpen;
             </div>
           </li>
           <li>
-            <a href="#"
+            <a href="#events"
               class="flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 text-white rounded md:bg-transparent uppercase">
               eventi
             </a>
           </li>
           <li>
-            <a href="#"
+            <router-link :to="{ name: 'orders' }"
               class="flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 text-white rounded md:bg-transparent uppercase">
-              Blog
-            </a>
+              Ordini
+            </router-link>
           </li>
-          <li>
+          <li class="flex items-center justify-center">
             <button @click="openCartModal"
               class="group flex items-center justify-center hover:text-primary text-sm gap-1 py-2 px-3 text-white rounded md:bg-transparent uppercase">
               <div class="relative flex gap-1 items-center">
