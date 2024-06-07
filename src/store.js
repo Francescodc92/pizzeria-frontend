@@ -9,5 +9,6 @@ export const store = reactive({
   modalReservationOpen: false,
   cartModalOpen: false,
   addressModalOpen: false,
+  orderModalOpen: false,
   cart: getDataFromLocalStorage("cart") || [],
 });

@@ -64,7 +64,7 @@ onMounted(() => {
 <template>
 
   <div class="py-5 flex px-3 relative">
-    <div class="flex flex-col sm:flex-row sm:items-center border gap-3 flex-1">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 flex-1">
       <div class="w-[150px] h-[150px] relative self-center">
         <img class="w-full h-full object-cover object-center" :src="pizza.fullImagePath" :alt="pizza.name" />
         <span v-if="pizza.discountPercent"
@@ -77,7 +77,7 @@ onMounted(() => {
           @click="openPizzaInfo(pizza.id)">
           {{ pizza.name }}
         </h3>
-        <div class="flex gap-2 w-full border">
+        <div class="flex gap-2 w-full">
           <div class="flex flex-col">
             <span class="font-bold text-gray-500 line-through text-sm" v-if="pizza.discountPercent">
               {{ formatCurrency(pizza.price) }}

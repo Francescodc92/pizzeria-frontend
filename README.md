@@ -6,7 +6,11 @@
 
 - aggiungere una transizione per il cambio rotta
 
-## aggiungere una sezione/pagina per la lista degli ordini dell'utente dove potrà vedere gli ordini effettuati
+## ordini
+
+- cambiare il backend per inviare i dati in maniera più pulita
+- sistemare la visualizzazione degli ordini in mobile
+- inserire una paginazione per gli ordini in modo da inviarne solo 10 per volta
 
 ## bugs
 
