@@ -35,7 +35,7 @@ onMounted(() => {
       <div class="px-5 py-5 border-b-[1px] border-primary font-semibold text-lg flex-1 overflow-y-auto ">
         <span class="block text-primary text-xs text-center">* Per modificare i prodotti accedi al
           carrello</span>
-        <template v-if="products.length > 0">
+        <template v-if="store.cart.length > 0">
           <div v-for="product in products" :key="product.id" class="flex justify-between py-2 ">
             <p>
               <span class="text-primary">
@@ -49,14 +49,11 @@ onMounted(() => {
 
       </div>
 
-      <div class="p-3 py-5 flex justify-between text-xl font-semibold" v-if="products.length > 0">
+      <div class="p-3 py-5 flex justify-between text-xl font-semibold">
         <span>Totale:</span>
         <p>{{ formatCurrency(getCartTotalPrice()) }}</p>
       </div>
-      <div class="p-3 py-5 flex justify-between text-xl font-semibold" v-else>
-        <span>Totale:</span>
-        <p> {{ formatCurrency(0) }} </p>
-      </div>
+
 
     </div>
 

@@ -4,7 +4,7 @@ import { onMounted, ref } from "vue";
 import { formatCurrency } from "../../utilities/formatValue/formatCurrency";
 let orders = ref([]);
 const statusColors = ref({
-  'pending': 'bg-red-400',
+  'pending': 'bg-primary',
   'processing': 'bg-yellow-400',
   'shipped': 'bg-blue-400',
   'completed': 'bg-green-400'
@@ -12,7 +12,6 @@ const statusColors = ref({
 
 onMounted(() => {
   apiRequest.get("/api/orders").then((response) => {
-    console.log(response.data.data);
     orders.value = response.data.data;
   })
 });

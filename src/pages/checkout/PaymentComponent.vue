@@ -98,9 +98,6 @@ const processPayment = (nonce) => {
         position: "top-right",
       })
     })
-    .finally(() => {
-      router.push({ name: "checkout" })
-    })
 
 }
 

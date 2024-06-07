@@ -60,6 +60,7 @@ export const getPizzaCartIndex = (pizzaId) => {
 };
 
 export const getPizzaTotalPrice = (pizzaId) => {
+  if (store.cart.length == 0) return 0;
   const pizza = store.cart.find((pizza) => {
     return pizza.pizzaElement.id == pizzaId;
   });
