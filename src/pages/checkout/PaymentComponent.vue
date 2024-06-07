@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
 import dropin from 'braintree-web-drop-in';
+import { useRouter } from "vue-router";
 import { toast } from "../../utilities/toast/toastInstance.js";
 import { apiRequest } from "../../utilities/axios/axiosInstance.js";
 import { store } from "../../store.js";
@@ -75,8 +75,8 @@ const submitPayment = () => {
 }
 
 const processPayment = (nonce) => {
-  const pizzas = store.cart.map((pizzaElement) => {
-    return { pizza: pizzaElement.pizzaId, quantity: pizzaElement.quantity }
+  const pizzas = store.cart.map((cartItem) => {
+    return { pizza: cartItem.pizzaElement.id, quantity: cartItem.quantity }
   })
 
   apiRequest.post("/api/orders/make/payment", {
@@ -88,7 +88,6 @@ const processPayment = (nonce) => {
       store.cart = [];
       setDataInLocalStorage("cart", store.cart);
       store.cartModalOpen = false;
-      router.push({ name: "checkout" });
       toast.success("pagamento effettuato con successo", {
         position: "top-right",
       })
@@ -99,6 +98,10 @@ const processPayment = (nonce) => {
         position: "top-right",
       })
     })
+    .finally(() => {
+      router.push({ name: "checkout" })
+    })
+
 }
 
 onMounted(() => {

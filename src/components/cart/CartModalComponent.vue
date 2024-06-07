@@ -29,7 +29,7 @@ const closeModal = () => store.cartModalOpen = false
     <template v-else>
       <div class="h-[70%] overflow-y-auto">
         <h1 class="text-3xl font-bold text-primary text-center">Carrello</h1>
-        <CartPizzaComponent v-for="pizza in cartItems" :key="pizza.pizzaId" :pizzaId="pizza.pizzaId"
+        <CartPizzaComponent v-for="pizza in cartItems" :key="pizza.pizzaElement.id" :pizzaId="pizza.pizzaElement.id"
           :pizzaQuantity="pizza.quantity" />
       </div>
 
@@ -43,7 +43,7 @@ const closeModal = () => store.cartModalOpen = false
           <p>{{ store.cart.length }}</p>
         </div>
         <div class="p-3 flex items-center justify-center flex-1">
-          <router-link :to="{ name: 'checkout' }"
+          <router-link :to="{ name: 'checkout' }" @click="closeModal()"
             class="bg-primary hover:bg-primary/80 text-white px-5 py-2 rounded text-sm cursor-pointer order-2 sm:order-1">
             Procedi
             con l'acquisto
