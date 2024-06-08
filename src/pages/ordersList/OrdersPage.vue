@@ -63,22 +63,22 @@ onMounted(() => getOrders());
 
       <div class="h-[350px] overflow-y-auto px-2">
         <table class="w-full px-2">
-          <thead class="sticky -top-1 bg-gray-200 text-xs md:text-sm text-gray-700 uppercase px-2">
+          <thead class="sticky top-0 bg-gray-200 text-xs md:text-sm text-gray-700 uppercase px-2">
             <tr>
-              <th scope="col" class="py-5 px-2 text-center md:text-start border-b border-primary hidden md:table-cell">
+              <th scope="col" class="py-5 px-2 text-center md:text-start hidden md:table-cell">
                 #Id Ordine
               </th>
 
-              <th scope="col" class="py-5 px-2 text-center md:text-start border-b border-primary hidden sm:table-cell">
+              <th scope="col" class="py-5 px-2 text-center md:text-start hidden sm:table-cell">
                 N* pizze
               </th>
-              <th scope="col" class="py-5 px-2 text-center md:text-start border-b border-primary ">
+              <th scope="col" class="py-5 px-2 text-center md:text-start ">
                 Data Ordine
               </th>
-              <th scope="col" class="py-5 px-2 text-center md:text-start border-b border-primary ">
+              <th scope="col" class="py-5 px-2 text-center md:text-start ">
                 Stato
               </th>
-              <th scope="col" class="py-5 px-2 text-center md:text-start border-b border-primary ">
+              <th scope="col" class="py-5 px-2 text-center md:text-start ">
                 Prezzo Totale
               </th>
             </tr>
@@ -87,15 +87,15 @@ onMounted(() => getOrders());
             <template v-for="order in orders" :key="order.id">
               <tr @click="openOrderModal(order)"
                 class="py-2 border-b border-gray-300 hover:border-primary cursor-pointer">
-                <td class="py-4 md:py-3 px-2 hidden md:table-cell">{{ order.id }}</td>
-                <td class="py-4 md:py-3 px-2 hidden sm:table-cell">{{ order.pizzas.length }}</td>
-                <td class="py-4 md:py-3 px-2 ">{{ order.orderDateForHuman }}</td>
-                <td class="py-4 md:py-3 px-2">
+                <td class="py-4 md:py-3 px-2 text-black/80 hidden md:table-cell">{{ order.id }}</td>
+                <td class="py-4 md:py-3 px-2 text-black/80 hidden sm:table-cell">{{ order.pizzas.length }}</td>
+                <td class="py-4 md:py-3 px-2 text-black/80 ">{{ order.orderDateForHuman }}</td>
+                <td class="py-4 md:py-3 px-2 text-black/80">
                   <span class=" px-2 md:px-3 py-1 rounded " :class="statusColors[order.status]">
                     {{ order.orderStatusTranslated[order.status] }}
                   </span>
                 </td>
-                <td class="py-4 md:py-3 px-2 text-primary text-center">{{ formatCurrency(order.orderPrice) }}</td>
+                <td class="py-4 md:py-3 px-2  text-primary text-center">{{ formatCurrency(order.orderPrice) }}</td>
               </tr>
             </template>
           </tbody>

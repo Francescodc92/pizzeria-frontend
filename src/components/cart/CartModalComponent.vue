@@ -12,6 +12,8 @@ watch(() => store.cart, () => {
 
 const closeModal = () => store.cartModalOpen = false
 
+
+
 </script>
 
 <template>

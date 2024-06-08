@@ -3,6 +3,7 @@ import { formatCurrency } from "../../utilities/formatValue/formatCurrency";
 import { onMounted, ref, watch } from "vue";
 import { store } from "../../store.js";
 import { apiRequest } from "../../utilities/axios/axiosInstance.js";
+import { setDataInLocalStorage } from "../../utilities/localStorage/localStorageHelper.js";
 import { useRouter } from "vue-router";
 import { getPizzaQuantity, updatePizza, removeToCart, getPizzaTotalPrice, getPizzaCartIndex } from "../../utilities/cart/cart.js";
 import QuantityButtons from "../QuantityButtons.vue";
@@ -56,7 +57,16 @@ onMounted(() => {
   apiRequest.get(`/api/pizzas/${pizzaId}`)
     .then((response) => {
       pizza.value = response.data.data;
-      totalPrice.value = getPizzaTotalPrice(pizzaId)
+      if (store.cart[pizzaIndex] && store.cart[pizzaIndex].pizzaElement.priceAfterDiscount != pizza.value.priceAfterDiscount) {
+        console.log(pizza.value.name)
+        removeToCart(pizzaId)
+        return
+      } else {
+        totalPrice.value = getPizzaTotalPrice(pizzaId)
+      }
+    })
+    .catch((error) => {
+      removeToCart(pizzaId)
     })
 })
 </script>
