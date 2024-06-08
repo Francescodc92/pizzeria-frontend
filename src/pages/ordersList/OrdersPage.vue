@@ -8,6 +8,7 @@ let orders = ref([]);
 let firstPage = ref(1)
 let currentPage = ref(1)
 let lastPage = ref(0)
+let loading = ref(false)
 
 let selectedOrder = ref(null);
 const statusColors = ref({
@@ -18,16 +19,20 @@ const statusColors = ref({
 })
 
 const getOrders = (button) => {
-
   if (button == "prev") {
     currentPage.value = currentPage.value - 1;
   } else if (button == "next") {
     currentPage.value = currentPage.value + 1;
+  } else {
+    loading.value = true
   }
 
   apiRequest.get(`/api/orders?page=${currentPage.value}`).then((response) => {
     orders.value = response.data.data;
     lastPage.value = response.data.meta.last_page;
+    setTimeout(() => {
+      loading.value = false
+    }, 300);
   })
 };
 
@@ -43,7 +48,15 @@ onMounted(() => getOrders());
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-3 relative min-h-[300px]">
+  <div class="h-[300px] flex items-center justify-center" v-if="loading">
+    <div
+      class="inline-block h-20 w-20  animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] text-primary"
+      role="status">
+      <span
+        class="!absolute  !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-3 relative min-h-[300px]" v-else>
     <h2 class=" text-center text-3xl uppercase my-5 text-primary font-bold">Ordini</h2>
     <div
       class="relative border-t-2 border-b-2 border-primary rounded-2xl pt-5 bg-white my-5 shadow-xl shadow-black/20 overflow-hidden">
@@ -106,8 +119,8 @@ onMounted(() => getOrders());
 
     </div>
 
+    <OrderModal v-if="store.orderModalOpen && selectedOrder" :order="selectedOrder" />
   </div>
-  <OrderModal v-if="store.orderModalOpen && selectedOrder" :order="selectedOrder" />
 </template>
 
 <style scoped></style>

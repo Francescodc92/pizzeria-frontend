@@ -40,6 +40,7 @@ const router = createRouter({
           });
           return { name: "home" };
         }
+        to = { name: "checkout" };
       },
     },
     {
@@ -53,6 +54,8 @@ const router = createRouter({
           });
           return { name: "home" };
         }
+
+        to = { name: "checkout" };
       },
     },
     {

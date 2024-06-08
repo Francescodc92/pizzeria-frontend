@@ -7,10 +7,24 @@ import CartModalComponent from "./components/cart/CartModalComponent.vue";
 <template>
   <div class="relative">
     <Header />
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <Footer />
     <CartModalComponent />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+</style>

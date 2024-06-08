@@ -12,10 +12,6 @@ const { authorization, loadingPayment, disabledButton, products } = defineProps(
     required: true,
     type: String
   },
-  loadingPayment: {
-    required: true,
-    type: Boolean
-  },
   products: {
     required: true,
     type: Array
@@ -109,8 +105,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="max-w-6xl min-h-[300px] mx-auto  px-2 border-t-2 border-b-2 border-primary rounded-2xl  bg-white my-5 shadow-xl shadow-black/20 flex flex-col"
-    v-if="!loadingPayment">
+    class="max-w-6xl min-h-[300px] mx-auto  px-2 border-t-2 border-b-2 border-primary rounded-2xl  bg-white my-5 shadow-xl shadow-black/20 flex flex-col">
     <div class="flex flex-col md:flex-row flex-1">
       <div class="md:w-[50%] w-full h-[300px] py-3 pt-10 px-3 overflow-y-auto ">
         <template v-if="store.user?.addresses.length > 0">

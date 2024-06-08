@@ -11,18 +11,25 @@ let currentPage = ref(1)
 let lastPage = ref(0)
 const router = useRouter()
 
+let loading = ref(false)
+
 const getPizzas = (button) => {
 
   if (button == "prev") {
     currentPage.value = currentPage.value - 1;
   } else if (button == "next") {
     currentPage.value = currentPage.value + 1;
+  } else {
+    loading.value = true
   }
   apiRequest
     .get(`/api/pizzas?page=${currentPage.value}`)
     .then((response) => {
       pizzas.value = response.data.data;
       lastPage.value = response.data.meta.last_page;
+      setTimeout(() => {
+        loading.value = false
+      }, 300);
     })
 };
 
@@ -42,7 +49,15 @@ onMounted(() => getPizzas());
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-3 relative">
+  <div class="h-[300px] flex items-center justify-center" v-if="loading">
+    <div
+      class="inline-block h-20 w-20  animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] text-primary"
+      role="status">
+      <span
+        class="!absolute  !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-3 relative" v-else>
     <button @click="goBack"
       class="absolute top-0 left-0 bg-primary text-white w-10 h-10 flex items-center justify-center rounded-md">
       <font-awesome-icon icon="fa-solid fa-arrow-left" />

@@ -9,7 +9,7 @@ import AddressModalComponent from "./AddressModalComponent.vue";
 
 const tokenBraintree = ref("");
 const products = ref(store.cart);
-let loadingPaymentElement = ref(false)
+let loading = ref(false);
 
 
 watch(() => store.cart, () => {
@@ -17,18 +17,29 @@ watch(() => store.cart, () => {
 })
 
 onMounted(() => {
-  loadingPaymentElement.value = true
+  loading.value = true
   apiRequest.get("/api/orders/generate/token")
     .then((response) => {
-      loadingPaymentElement.value = false
       tokenBraintree.value = response.data.token;
+
+      setTimeout(() => {
+        loading.value = false
+      }, 500);
     })
 });
 </script>
 
 <template>
 
-  <div class="max-w-6xl px-2 mx-auto">
+  <div class="h-[300px] flex items-center justify-center" v-if="loading">
+    <div
+      class="inline-block h-20 w-20  animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] text-primary"
+      role="status">
+      <span
+        class="!absolute  !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+    </div>
+  </div>
+  <div class="max-w-6xl px-2 mx-auto" v-else>
     <div
       class=" flex flex-col border-t-2 border-b-2 border-primary rounded-2xl px-2 bg-white my-5 shadow-xl shadow-black/20 h-[250px]">
 
@@ -59,9 +70,9 @@ onMounted(() => {
 
     <PaymentComponent v-if="tokenBraintree" :authorization="tokenBraintree" :loadingPayment="loadingPaymentElement"
       :products="products" />
+    <AddressModalComponent />
   </div>
 
-  <AddressModalComponent />
 </template>
 
 <style scoped></style>
