@@ -8,12 +8,14 @@ const { order } = defineProps({
   required: true
 })
 
+
 const statusColors = ref({
   'pending': 'bg-primary',
   'processing': 'bg-yellow-400',
   'shipped': 'bg-blue-400',
   'completed': 'bg-green-400'
 })
+
 
 </script>
 
@@ -31,7 +33,8 @@ const statusColors = ref({
         <div class="w-full md:w-1/2  p-2">
           <h3 class="text-primary uppercase">Dettagli spedizione</h3>
           <p>Contatti</p>
-          <p class="text-gray-500">{{ store.user.phoneNumber }}</p>
+          <p class="text-gray-500">{{ order.user.phoneNumber }}</p>
+          <p class="text-gray-500">{{ order.user.email }}</p>
           <p class="text-gray-500">
             {{ order.address.road }}, {{ order.address.city }}, {{ order.address.zipCode }} {{ order.address.country }}
           </p>
@@ -41,18 +44,18 @@ const statusColors = ref({
           <h3 class="text-primary uppercase">Dati ordine</h3>
           <div class="flex justify-end">
             <span class="py-1 px-2 font-bold text-white rounded text-right" :class="statusColors[order.status]">
-              {{ order.order_statuses[order.status] }}
+              {{ order.orderStatusTranslated[order.status] }}
             </span>
           </div>
           <div class="flex justify-between pt-4">
             <div>
               <p>Data Ordine</p>
-              <p class="text-gray-500">{{ order.order_date_forHumans }}</p>
+              <p class="text-gray-500">{{ order.orderDateForHuman }}</p>
             </div>
             <div>
               <p>Prezzo Ordine</p>
               <p class="text-primary">
-                {{ formatCurrency(order.order_price) }}
+                {{ formatCurrency(order.orderPrice) }}
               </p>
             </div>
           </div>

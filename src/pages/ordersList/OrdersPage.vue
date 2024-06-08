@@ -15,7 +15,6 @@ const statusColors = ref({
 
 const openOrderModal = (order) => {
   selectedOrder.value = order
-  console.log(store.orderModalOpen)
   store.orderModalOpen = true
 }
 
@@ -24,6 +23,8 @@ onMounted(() => {
     orders.value = response.data.data;
   })
 });
+
+
 
 </script>
 
@@ -60,13 +61,13 @@ onMounted(() => {
                 class="py-2 border-b border-gray-300 hover:border-primary cursor-pointer">
                 <td class="py-4 md:py-3 px-2 hidden md:table-cell">{{ order.id }}</td>
                 <td class="py-4 md:py-3 px-2 hidden sm:table-cell">{{ order.pizzas.length }}</td>
-                <td class="py-4 md:py-3 px-2 ">{{ order.order_date_forHumans }}</td>
+                <td class="py-4 md:py-3 px-2 ">{{ order.orderDateForHuman }}</td>
                 <td class="py-4 md:py-3 px-2">
                   <span class=" px-2 md:px-3 py-1 rounded " :class="statusColors[order.status]">
-                    {{ order.order_statuses[order.status] }}
+                    {{ order.orderStatusTranslated[order.status] }}
                   </span>
                 </td>
-                <td class="py-4 md:py-3 px-2 text-primary text-center">{{ formatCurrency(order.order_price) }}</td>
+                <td class="py-4 md:py-3 px-2 text-primary text-center">{{ formatCurrency(order.orderPrice) }}</td>
               </tr>
             </template>
           </tbody>
