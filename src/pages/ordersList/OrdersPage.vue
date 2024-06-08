@@ -5,6 +5,10 @@ import OrderModal from "./OrderModal.vue";
 import { onMounted, ref } from "vue";
 import { formatCurrency } from "../../utilities/formatValue/formatCurrency";
 let orders = ref([]);
+let firstPage = ref(1)
+let currentPage = ref(1)
+let lastPage = ref(0)
+
 let selectedOrder = ref(null);
 const statusColors = ref({
   'pending': 'text-primary',
@@ -13,16 +17,26 @@ const statusColors = ref({
   'completed': 'text-green-600'
 })
 
+const getOrders = (button) => {
+
+  if (button == "prev") {
+    currentPage.value = currentPage.value - 1;
+  } else if (button == "next") {
+    currentPage.value = currentPage.value + 1;
+  }
+
+  apiRequest.get(`/api/orders?page=${currentPage.value}`).then((response) => {
+    orders.value = response.data.data;
+    lastPage.value = response.data.meta.last_page;
+  })
+};
+
 const openOrderModal = (order) => {
   selectedOrder.value = order
   store.orderModalOpen = true
 }
 
-onMounted(() => {
-  apiRequest.get("/api/orders").then((response) => {
-    orders.value = response.data.data;
-  })
-});
+onMounted(() => getOrders());
 
 
 
@@ -31,9 +45,10 @@ onMounted(() => {
 <template>
   <div class="max-w-6xl mx-auto px-3 relative min-h-[300px]">
     <h2 class=" text-center text-3xl uppercase my-5 text-primary font-bold">Ordini</h2>
-    <div class="relative border-t-2 border-b-2 border-primary rounded-2xl py-5 bg-white my-5 shadow-xl shadow-black/20">
+    <div
+      class="relative border-t-2 border-b-2 border-primary rounded-2xl pt-5 bg-white my-5 shadow-xl shadow-black/20 overflow-hidden">
 
-      <div class="h-[300px] overflow-y-auto px-2">
+      <div class="h-[350px] overflow-y-auto px-2">
         <table class="w-full px-2">
           <thead class="sticky -top-1 bg-gray-200 text-xs md:text-sm text-gray-700 uppercase px-2">
             <tr>
@@ -72,6 +87,20 @@ onMounted(() => {
             </template>
           </tbody>
         </table>
+      </div>
+      <div
+        class="flex items-center justify-between lg:justify-center gap-3 py-3 px-3 sticky bottom-0 bg-white md:static border-t border-primary"
+        v-if="lastPage != 1">
+        <button
+          class="bg-primary text-white px-5 py-2 rounded text-sm cursor-pointer disabled:opacity-50 disabled:cursor-auto uppercase"
+          @click="getOrders('prev')" :disabled="currentPage == firstPage">
+          prev
+        </button>
+        <button
+          class="bg-primary text-white px-5 py-2 rounded text-sm cursor-pointer disabled:opacity-50 disabled:cursor-auto uppercase"
+          @click="getOrders('next')" :disabled="currentPage == lastPage">
+          next
+        </button>
       </div>
 
 
