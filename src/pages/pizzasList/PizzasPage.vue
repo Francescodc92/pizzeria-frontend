@@ -98,7 +98,7 @@ onMounted(() => getPizzas());
       </template>
     </div>
     <div
-      class="flex items-center justify-between lg:justify-center gap-3 py-3 lg:py-5 sticky bottom-0 bg-white md:static"
+      class="flex items-center justify-between lg:justify-center gap-3 py-3 lg:py-5 sticky bottom-0 bg-white lg:static"
       v-if="lastPage != 1">
       <button
         class="bg-primary text-white px-5 py-2 rounded text-sm cursor-pointer disabled:opacity-50 disabled:cursor-auto uppercase"
