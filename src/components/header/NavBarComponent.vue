@@ -25,12 +25,12 @@ const openCartModal = () => store.cartModalOpen = !store.cartModalOpen;
 
 <template>
   <nav class="fixed w-full z-20 top-0 start-0 bg-zinc-800">
-    <div class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-3 py-2">
+    <div class="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto px-2 py-2">
       <router-link :to="{ name: 'pizzas' }"
         class="bg-primary text-white px-3 py-1 rounded text-sm uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70">
         Ordina
       </router-link>
-      <div class="max-w-[80px] sm:max-w-[100px] hidden sm:block md:hidden">
+      <div class="max-w-[80px] sm:max-w-[90px] hidden sm:block md:hidden">
         <img class="w-full" :src="getImgPath('img/h5-logo-divided-header-dark.png')" alt="logo pizzeria don peppe" />
       </div>
       <div class="flex items-center md:order-2 space-x-3 md:space-x-0">
@@ -56,8 +56,8 @@ const openCartModal = () => store.cartModalOpen = !store.cartModalOpen;
                   </button>
                 </li>
                 <li v-if="store.user.role.includes('admin')" class="w-full">
-                  <a class="bg-primary w-full block text-white px-3 py-2 uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
-                    href="http://localhost" target="_blank">Area Admin</a>
+                  <a class="bg-primary w-full block text-white px-3 py-2 text-center uppercase cursor-pointer transition-all duration-300 hover:bg-primary/70"
+                    href="http://localhost/admin/pizzas" target="_blank">Area Admin</a>
                 </li>
               </ul>
             </div>
@@ -76,7 +76,7 @@ const openCartModal = () => store.cartModalOpen = !store.cartModalOpen;
       <div class="items-center justify-between w-full md:flex md:w-auto md:order-1"
         :class="{ hidden: !showMenu, block: showMenu }">
         <ul
-          class="flex flex-col gap-3 md:gap-0 p-4 md:p-0 mt-4 border rounded-lg bg-gray-50 rtl:space-x-reverse md:flex-row md:items-center md:mt-0 md:border-0 bg-gray-800/80 md:bg-transparent border-gray-700">
+          class="flex flex-col gap-2 md:gap-0 py-4 px-1 md:p-0 mt-4 border rounded-lg bg-gray-50 rtl:space-x-reverse md:flex-row md:items-center md:mt-0 md:border-0 bg-gray-800/80 md:bg-transparent border-gray-700">
           <li>
             <router-link :to="{ name: 'home' }"
               class="flex items-center justify-center gap-1 py-2 px-3  rounded  md:bg-transparent uppercase hover:text-primary hover:fill-primary text-sm"

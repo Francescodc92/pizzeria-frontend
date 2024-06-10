@@ -1,7 +1,23 @@
 <script setup>
+import { onMounted, ref } from "vue";
 import Header from "./components/header/HeaderComponent.vue";
 import Footer from "./components/footer/FooterComponent.vue";
 import CartModalComponent from "./components/cart/CartModalComponent.vue";
+import ButtonGoUp from "./components/ButtonGoUp.vue";
+
+let shouldShowButton = ref(false)
+
+const checkScroll = () => {
+  if (window.scrollY > 500) {
+    shouldShowButton.value = true;
+  } else {
+    shouldShowButton.value = false;
+  }
+}
+
+
+
+window.addEventListener("scroll", checkScroll);
 </script>
 
 <template>
@@ -14,6 +30,7 @@ import CartModalComponent from "./components/cart/CartModalComponent.vue";
     </router-view>
     <Footer />
     <CartModalComponent />
+    <ButtonGoUp v-if="shouldShowButton" />
   </div>
 </template>
 
