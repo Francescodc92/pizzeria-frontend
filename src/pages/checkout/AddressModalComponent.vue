@@ -24,6 +24,10 @@ const submitForm = () => {
       store.user = response.data.data;
       setDataInLocalStorage("user", store.user);
 
+      formData.city = "";
+      formData.road = "";
+      formData.zipCode = "";
+
       store.addressModalOpen = false;
       toast.success("indirizzo aggiunto", {
         position: "top-right",
