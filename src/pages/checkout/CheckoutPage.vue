@@ -21,10 +21,7 @@ onMounted(() => {
   apiRequest.get("/api/orders/generate/token")
     .then((response) => {
       tokenBraintree.value = response.data.token;
-
-      setTimeout(() => {
-        loading.value = false
-      }, 500);
+      loading.value = false
     })
 });
 </script>
@@ -68,7 +65,7 @@ onMounted(() => {
 
     </div>
 
-    <PaymentComponent v-if="tokenBraintree" :authorization="tokenBraintree" :loadingPayment="loadingPaymentElement"
+    <PaymentComponent v-if="tokenBraintree" :authorization="tokenBraintree" :loadingPayment="loading"
       :products="products" />
     <AddressModalComponent />
   </div>
