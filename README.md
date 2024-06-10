@@ -2,6 +2,10 @@
 
 - [repo backend](https://github.com/Francescodc92/pizzeria-backend-laravel-11)
 
+# TODO
+
+- cambiare la visualizzazione del tema della navbar
+
 ## Reservations
 
 - valutare la possibilità di aggiungere una tabella reservations nel back per dare la possibilità di prenotare un tavolo
