@@ -1,7 +1,8 @@
+import { VueQueryPlugin } from "@tanstack/vue-query";
 import { createApp } from "vue";
-import "./style.css";
 import App from "./App.vue";
 import { router } from "./router";
+import "./style.css";
 /* toast*/
 import ToastPlugin from "vue-toast-notification";
 import "vue-toast-notification/dist/theme-bootstrap.css";
@@ -12,10 +13,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import {
-  faLocationDot,
-  faMagnifyingGlass,
-  faUserGroup,
-} from "@fortawesome/free-solid-svg-icons";
+  faFacebookF,
+  faInstagram,
+  faLinkedinIn,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 import {
   faCalendar,
   faClock,
@@ -23,17 +25,16 @@ import {
   faHeart,
 } from "@fortawesome/free-regular-svg-icons";
 import {
-  faFacebookF,
-  faInstagram,
-  faLinkedinIn,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
-import { faQuoteRight } from "@fortawesome/free-solid-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+  faArrowLeft,
+  faLocationDot,
+  faMagnifyingGlass,
+  faMinus,
+  faPlus,
+  faQuoteLeft,
+  faQuoteRight,
+  faTrash,
+  faUserGroup,
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(
   faMagnifyingGlass,
@@ -58,5 +59,6 @@ library.add(
 createApp(App)
   .use(router)
   .use(ToastPlugin)
+  .use(VueQueryPlugin)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");

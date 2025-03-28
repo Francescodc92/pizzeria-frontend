@@ -1,15 +1,13 @@
-import { createWebHistory, createRouter } from "vue-router";
-import { apiRequest } from "./utilities/axios/axiosInstance.js";
-import { setDataInLocalStorage } from "./utilities/localStorage/localStorageHelper.js";
+import { createRouter, createWebHistory } from "vue-router";
 import { store } from "./store.js";
 import { toast } from "./utilities/toast/toastInstance.js";
 
+import CheckoutPage from "./pages/checkout/CheckoutPage.vue";
 import HomePage from "./pages/home/HomePage.vue";
 import NotFound from "./pages/NotFound.vue";
+import OrdersPage from "./pages/ordersList/OrdersPage.vue";
 import PizzasPage from "./pages/pizzasList/PizzasPage.vue";
 import SinglePizza from "./pages/showPizzaInfo/SinglePizza.vue";
-import CheckoutPage from "./pages/checkout/CheckoutPage.vue";
-import OrdersPage from "./pages/ordersList/OrdersPage.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -69,14 +67,14 @@ const router = createRouter({
   },
 });
 
-router.beforeEach(async (to) => {
-  apiRequest
-    .get("/api/user")
-    .then((response) => {})
-    .catch((error) => {
-      store.user = null;
-      setDataInLocalStorage("user", null);
-    });
-});
+// router.beforeEach(async (to) => {
+//   apiRequest
+//     .get("/api/user")
+//     .then((response) => {})
+//     .catch((error) => {
+//       store.user = null;
+//       setDataInLocalStorage("user", null);
+//     });
+// });
 
 export { router };

@@ -1,5 +1,5 @@
-import { apiRequest } from "../axios/axiosInstance";
 import { store } from "../../store";
+import { apiRequest } from "../axios/axiosInstance";
 import { setDataInLocalStorage } from "../localStorage/localStorageHelper";
 
 export const register = async (formData) => {
@@ -23,12 +23,13 @@ export const login = async (formData) => {
   });
 
   if (token) {
-    await apiRequest.post("/api/login", formData).then((response) => {
-      store.user = response.data.data;
-      setDataInLocalStorage("user", response.data.data);
+    await apiRequest.post("/api/login", formData)
+      .then((response) => {
+        store.user = response.data.data;
+        setDataInLocalStorage("user", response.data.data);
 
-      message = response.data.message;
-    });
+        message = response.data.message;
+      });
   }
 
   return message;
